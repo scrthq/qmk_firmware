@@ -66,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |ISO ~ |ISO | |      |      | Enter|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |    Space    |      | Home |CtlEnd|CtlHom|  End |
+ * |      |      |      |      |      |    Enter    |      | Home |CtlEnd|CtlHom|  End |
  * `-----------------------------------------------------------------------------------'
  */
 [_LOWER] = LAYOUT_preonic_grid( \
@@ -74,7 +74,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR,    KC_ASTR,    KC_LBRC,      KC_RBRC,       KC_DEL,  \
   KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_UNDS,    KC_PLUS,    KC_LCBR,      KC_RCBR,       KC_PIPE, \
   _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  S(KC_NUHS), S(KC_NUBS), _______,      _______,       KC_ENT,  \
-  _______, _______, _______, _______, _______, KC_SPC,  KC_SPC,  _______,    KC_HOME,    LCTL(KC_END), LCTL(KC_HOME), KC_END   \
+  _______, _______, _______, _______, _______, KC_ENT,  KC_ENT,  _______,    KC_HOME,    LCTL(KC_END), LCTL(KC_HOME), KC_END   \
 ),
 
 /* Raise (Custom)
@@ -87,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |ISO # |ISO / |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |    Space    |      |CSLeft|CSDown| CSUp |CSRght|
+ * |      |      |      |      |      |    Enter    |      |CSLeft|CSDown| CSUp |CSRght|
  * `-----------------------------------------------------------------------------------'
  */
 [_RAISE] = LAYOUT_preonic_grid( \
@@ -95,7 +95,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,                KC_9,                KC_0,              KC_DEL,             \
   KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_MINS, KC_EQL,              KC_LBRC,             KC_RBRC,           KC_BSLS,            \
   _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_NUHS, KC_NUBS,             KC_PGUP,             KC_PGDN,           _______,            \
-  _______, _______, _______, _______, _______, KC_SPC,  KC_SPC,  _______, LCTL(LSFT(KC_LEFT)), LCTL(LSFT(KC_DOWN)), LCTL(LSFT(KC_UP)), LCTL(LSFT(KC_RGHT)) \
+  _______, _______, _______, _______, _______, KC_ENT,  KC_ENT,  _______, LCTL(LSFT(KC_LEFT)), LCTL(LSFT(KC_DOWN)), LCTL(LSFT(KC_UP)), LCTL(LSFT(KC_RGHT)) \
 ),
 
 /* Adjust (Lower + Raise)
@@ -108,7 +108,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      |      |      |      |      |      |      | Mute |   0  |Period|      |NumLck|
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |  F5  |  F8  |Aplctn|      |      |    Space    |      | Prev | Vol- | Vol+ | Next |
+ * |  F5  |  F8  |Aplctn| AltGr|      |    Enter    |      | Prev | Vol- | Vol+ | Next |
  * `-----------------------------------------------------------------------------------'
  */
 [_ADJUST] = LAYOUT_preonic_grid( \
@@ -116,7 +116,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, RESET,   DEBUG,      _______, _______, _______, _______, KC_KP_4, KC_KP_5, KC_KP_6,   KC_MPLY, KC_DEL,  \
   KC_CAPS, _______, LCTL(KC_S), _______, _______, KC_WREF, G(KC_L), KC_KP_1, KC_KP_2, KC_KP_3,   _______, _______, \
   _______, _______, _______,    _______, _______, _______, _______, KC_MUTE, KC_KP_0, KC_KP_DOT, _______, KC_NLCK, \
-  KC_F5,   KC_F8,   KC_APP,     _______, _______, KC_SPC,  KC_SPC,  _______, KC_MPRV, KC_VOLD,   KC_VOLU, KC_MNXT  \
+  KC_F5,   KC_F8,   KC_APP,     KC_ALGR, _______, KC_ENT,  KC_ENT,  _______, KC_MPRV, KC_VOLD,   KC_VOLU, KC_MNXT  \
 )
 
 

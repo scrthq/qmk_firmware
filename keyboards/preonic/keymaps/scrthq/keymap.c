@@ -91,11 +91,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_RAISE] = LAYOUT_preonic_grid( \
-  KC_GRV,       KC_1,    KC_2,          KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,                KC_LPRN,             KC_RPRN,           KC_PSCREEN,         \
-  LCTL(KC_TAB), KC_1,    KC_2,          KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,                LCTL(KC_LBRC),       LCTL(KC_RBRC),     KC_DEL,             \
-  KC_ESC,       KC_F1,   LCTL(KC_F2),   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_MINS, KC_EQL,              KC_LCBR,             KC_RCBR,           KC_BSLS,            \
-  _______,      KC_F7,   KC_F8,         KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_NUHS, KC_NUBS,             KC_PGUP,             KC_PGDN,           _______,            \
-  _______,      _______, _______,       _______, _______, KC_ENT,  KC_ENT,  _______, LCTL(LSFT(KC_LEFT)), LCTL(LSFT(KC_DOWN)), LCTL(LSFT(KC_UP)), LCTL(LSFT(KC_RGHT)) \
+  KC_GRV,       KC_1,    KC_2,          KC_3,    KC_4,    KC_5,    KC_6,       KC_7,       KC_8,                KC_LPRN,             KC_RPRN,           KC_PSCREEN,         \
+  LCTL(KC_TAB), KC_1,    KC_2,          KC_3,    KC_4,    KC_5,    KC_6,       KC_MS_BTN2, KC_MS_U,             LCTL(KC_LBRC),       LCTL(KC_RBRC),     KC_DEL,             \
+  KC_ESC,       KC_F1,   LCTL(KC_F2),   KC_F3,   KC_F4,   KC_F5,   KC_MS_BTN1, KC_MS_L,    KC_MS_D,             KC_MS_R,             KC_RCBR,           KC_BSLS,            \
+  _______,      KC_F7,   KC_F8,         KC_F9,   KC_F10,  KC_F11,  KC_F12,     KC_ACL0,    KC_ACL1,             KC_ACL2,             KC_PGUP,           KC_PGDN,            \
+  _______,      _______, _______,       _______, _______, KC_ENT,  KC_ENT,     _______,    LCTL(LSFT(KC_LEFT)), LCTL(LSFT(KC_DOWN)), LCTL(LSFT(KC_UP)), LCTL(LSFT(KC_RGHT)) \
 ),
 
 /* Adjust (Lower + Raise)

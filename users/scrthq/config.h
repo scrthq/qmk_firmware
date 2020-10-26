@@ -1,9 +1,36 @@
-#ifndef USERSPACE_CONFIG_H
-#define USERSPACE_CONFIG_H
+#pragma once
 
-#ifdef TAP_DANCE_ENABLE
-    #define TAPPING_TERM 300
-    #define TAPPING_TOGGLE 1
+#ifndef TAPPING_TOGGLE
+#define TAPPING_TOGGLE  3
 #endif
 
-#endif // !USERSPACE_CONFIG_H
+#ifdef TAPPING_TERM
+	#undef TAPPING_TERM
+#endif // TAPPING_TERM
+#define TAPPING_TERM 200
+//if no chord during tapping term, do the keystroke
+//#define RETRO_TAPPING
+
+// Disable action_get_macro and fn_actions, since we don't use these
+// and it saves on space in the firmware.
+// LTO_ENABLE automatically enables these
+//#define NO_ACTION_MACRO
+//#define NO_ACTION_FUNCTION
+#define MACRO_TIMER 5
+
+#define USE_BABBLEPASTE
+
+// All options
+#define BABL_MOVE // Uncomment to add basic cursor movement
+#define BABL_OSKEYS // This adds Cut, paste, window movement and common OS shortcuts
+#define BABL_BROWSER // Browser shortcuts, with Chrome/Firefox as the default.
+// edit the appropriate OS config file to enable Safari, Edge, vimpirator &etc.
+#define BABL_APP // Application specific settings this has sub-options.
+#define BABL_APP_CELLS // spreadsheets and tables
+#define BABL_APP_EDITOR // Fancy editor commands
+#define BABL_APP_WINDOWSPLITTING // splitting frames & windows
+
+//All OSes
+#define BABL_WINDOWS
+#define BABL_VI
+#define BABL_MAC

@@ -76,12 +76,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 // Custom keycodes
-/* enum userspace_custom_keycodes {
-    // Double keys
-    MOFO = USER_START,
+enum userspace_custom_keycodes {
+    MOFO,
     LOWER,
     RAISE
-}; */
+};
 
 /* Define layer names */
 enum userspace_layers {

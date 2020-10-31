@@ -17,12 +17,6 @@
 #include QMK_KEYBOARD_H
 #include "scrthq.h"
 
-enum plaid_keycodes {
-    MOFO,
-    LOWER,
-    RAISE
-};
-
 #define HOLDF LT(_HOLDF,KC_F)
 #define HOLDJ LT(_HOLDJ,KC_J)
 #define HOLDS LT(_SYMBOLS,KC_S)
@@ -277,50 +271,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
         break;
     }
     return state;
-}
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-#ifdef CONSOLE_ENABLE
-    uprintf("KL: kc: [%u], col: [%u], row: [%u], pressed: [%u]\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed);
-#endif
-#ifdef USE_BABBLEPASTE
-    if( keycode > BABBLE_START && keycode < BABBLE_END_RANGE )  {
-        if (record->event.pressed)  {
-            babblePaste ( keycode );
-        } else {
-            return true;
-        }
-    }
-#endif
-    switch (keycode) {
-    case MOFO:
-        if (record->event.pressed) {
-            SEND_STRING("Mofo from QMK!");
-        }
-        return false;
-        break;
-    case LOWER:
-        if (record->event.pressed) {
-            layer_on(_LOWER);
-            update_tri_layer(_LOWER, _RAISE, _FUNCTION);
-        } else {
-            layer_off(_LOWER);
-            update_tri_layer(_LOWER, _RAISE, _FUNCTION);
-        }
-        return false;
-        break;
-    case RAISE:
-        if (record->event.pressed) {
-            layer_on(_RAISE);
-            update_tri_layer(_LOWER, _RAISE, _FUNCTION);
-        } else {
-            layer_off(_RAISE);
-            update_tri_layer(_LOWER, _RAISE, _FUNCTION);
-        }
-        return false;
-        break;
-    }
-    return true;
 }
 
 #ifdef OLED_DRIVER_ENABLE

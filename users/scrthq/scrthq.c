@@ -1,68 +1,25 @@
+/*
+Copyright 2020 Nate Ferrell <nate@scrthq.com> <@scrthq>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 #include "scrthq.h"
 #include "quantum.h"
 
-/*---------------*\
-|*-----MOUSE-----*|
-\*---------------*/
-#ifdef MOUSEKEY_ENABLE
-#include "mousekey.h"
-#endif
-
-/*-------------------*\
-|*-----TAP-DANCE-----*|
-\*-------------------*/
 #ifdef TAP_DANCE_ENABLE
-qk_tap_dance_action_t tap_dance_actions[] = {
-    [SPENT] = ACTION_TAP_DANCE_DOUBLE(KC_SPC, KC_ENT)
-};
+    qk_tap_dance_action_t tap_dance_actions[] = {
+        [SPENT] = ACTION_TAP_DANCE_DOUBLE(KC_SPC, KC_ENT)
+    };
 #endif
-
-__attribute__ ((weak))
-bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
-    return true;
-}
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-#ifdef CONSOLE_ENABLE
-    uprintf("KL: kc: [%u], col: [%u], row: [%u], pressed: [%u]\n", keycode, record->event.key.col, record->event.key.row, record->event.pressed);
-#endif
-#ifdef USE_BABBLEPASTE
-    if( keycode > BABBLE_START && keycode < BABBLE_END_RANGE )  {
-        if (record->event.pressed)  {
-            babblePaste ( keycode );
-        } else {
-            return true;
-        }
-    }
-#endif
-    switch (keycode) {
-    case MOFO:
-        if (record->event.pressed) {
-            SEND_STRING("Mofo from QMK!");
-        }
-        return false;
-        break;
-    case LOWER:
-        if (record->event.pressed) {
-            layer_on(_LOWER);
-            update_tri_layer(_LOWER, _RAISE, _FUNCTION);
-        } else {
-            layer_off(_LOWER);
-            update_tri_layer(_LOWER, _RAISE, _FUNCTION);
-        }
-        return false;
-        break;
-    case RAISE:
-        if (record->event.pressed) {
-            layer_on(_RAISE);
-            update_tri_layer(_LOWER, _RAISE, _FUNCTION);
-        } else {
-            layer_off(_RAISE);
-            update_tri_layer(_LOWER, _RAISE, _FUNCTION);
-        }
-        return false;
-        break;
-    }
-    // return true;
-    return process_record_keymap(keycode, record);
-}

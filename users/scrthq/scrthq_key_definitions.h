@@ -89,8 +89,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #ifdef KEYBOARD_dm9records_plaid
     #define BSSLSH   KC_BSPC
+    #define DELSLSH  KC_DEL
 #else
     #define BSSLSH   KC_BSLASH
+    #define DELSLSH  KC_BSLASH
 #endif
 
 #define ___________________6_BLANK_________________   _______,    _______,   _______,   _______,   _______,   _______
@@ -116,11 +118,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define _____________OLKB_LOWER_L4_________________   _______,    _______,   _______,   _______,   _______,   TD_SPENT
 
 #define __________________LOWER_R0_________________   KC_6,       KC_7,      KC_8,      KC_9,      KC_0,      KC_DEL   // Not used on 40% boards like Plaid/Planck
-#define __________________LOWER_R1_________________   KC_CIRC,    KC_AMPR,   KC_ASTR,   KC_LPRN,   KC_RPRN,   KC_DEL
+#define __________________LOWER_R1_________________   KC_CIRC,    KC_AMPR,   KC_ASTR,   KC_LPRN,   KC_RPRN,   DELSLSH
 #define __________________LOWER_R2_________________   _______,    KC_UNDS,   KC_PLUS,   KC_LCBR,   KC_RCBR,   KC_PIPE
 #define __________________LOWER_R3_________________   _______,    _______,   KC_LT,     KC_GT,     KC_QUES,   _______
 #define _____________OLKB_LOWER_R4_________________   TD_SPENT,   _______,   B_L1W,     B_PGDN,    B_PGUP,    B_R1W
 
+// Raise Layer
+#define __________________RAISE_L0_________________   KC_GRV,     KC_1,      KC_2,      KC_3,      KC_4,      KC_5      // Not used on 40% boards like Plaid/Planck
+#define __________________RAISE_L1_________________   KC_GRV,     KC_1,      KC_2,      KC_3,      KC_4,      KC_5
+#define __________________RAISE_L2_________________   KC_ESC,     _______,   _______,   _______,   _______,   _______
+#define __________________RAISE_L3_________________   _______,    _______,   _______,   _______,   _______,   _______
+#define _____________OLKB_RAISE_L4_________________   _______,    _______,   B_INDENT,  B_DEDENT,  _______,   TD_SPENT
 
-// HOLD A Layer
+#define __________________RAISE_R0_________________   KC_6,       KC_7,      KC_8,      KC_9,      KC_0,      KC_BSPC   // Not used on 40% boards like Plaid/Planck
+#define __________________RAISE_R1_________________   KC_6,       KC_7,      KC_8,      KC_9,      KC_0,      BSSLSH
+#define __________________RAISE_R2_________________   _______,    KC_MINS,   KC_EQL,    KC_LBRC,   KC_RBRC,   KC_BSLS
+#define __________________RAISE_R3_________________   _______,    _______,   _______,   _______,   KC_SLSH,   _______
+#define _____________OLKB_RAISE_R4_________________   TD_SPENT,   _______,   B_L1W,     B_PGDN,    B_PGUP,    B_R1W
+
+
+// HOLD A Layer (Just used for debugging key location familiarty for now)
 #define ____________OLKB_HOLD_A_L4_________________   KC_F5,      KC_F8,     _______,   _______,   _______,   _______

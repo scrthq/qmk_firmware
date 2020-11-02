@@ -18,8 +18,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "scrthq.h"
 #include "quantum.h"
 
+#include "scrthq_layouts.h"
+#include "scrthq_key_definitions.h"
+
 #ifdef TAP_DANCE_ENABLE
     qk_tap_dance_action_t tap_dance_actions[] = {
         [SPENT] = ACTION_TAP_DANCE_DOUBLE(KC_SPC, KC_ENT)
     };
 #endif
+
+void keyboard_post_init_user(void) {
+    // Call the keymap level matrix init.
+
+    // Read the user config from EEPROM
+    userspace_config.raw = eeconfig_read_user();
+
+    if (userspace_config.raw >= BABL_MAC_MODE && userspace_config.raw <= BABL_DO_VI) {
+        set_babble_mode(userspace_config.raw);
+    }
+}

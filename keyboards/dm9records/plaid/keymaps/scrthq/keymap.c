@@ -36,10 +36,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_RAISE] = LAYOUT_scrthq(
-    KC_GRV,  KC_1,     KC_2,       KC_3,       KC_4,     KC_5,     KC_6,     KC_7,     KC_8,    KC_9,     KC_0,     KC_BSPC,
-    KC_ESC,  _______,  _______,    _______,    _______,  _______,  _______,  KC_MINS,  KC_EQL,  KC_LBRC,  KC_RBRC,  KC_BSLS,
-    _______, _______,  _______,    _______,    _______,  _______,  _______,  _______,  _______, _______,  KC_SLSH,  _______,
-    _______, _______,  C(KC_LBRC), C(KC_RBRC), _______,  TD_SPENT, TD_SPENT, _______,  B_L1W,   B_PGDN,   B_PGUP,   B_R1W
+    __________________RAISE_L1_________________,        __________________RAISE_R1_________________,
+    __________________RAISE_L2_________________,        __________________RAISE_R2_________________,
+    __________________RAISE_L3_________________,        __________________RAISE_R3_________________,
+    _____________OLKB_RAISE_L4_________________,        _____________OLKB_RAISE_R4_________________
 ),
 
 [_FUNCTION] = LAYOUT_scrthq(
@@ -98,7 +98,7 @@ bool led_update_user(led_t led_state) {
     return false;
 }
 
-void keyboard_post_init_user(void) {
+void keyboard_post_init_keymap(void) {
     writePin(LED_GREEN, 1);
     //debug_enable=true;
     //debug_matrix=true;

@@ -17,12 +17,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#ifdef USE_BABBLEPASTE
-    #include "babblePaste.h"
-#endif
+#include "babblePaste.h"
 
 #include QMK_KEYBOARD_H
+#include "quantum.h"
 
+// clang-format off
 // Custom keycodes
 enum userspace_custom_keycodes {
     USERSPACE_KEYCODE_START = 50000,
@@ -38,22 +38,32 @@ enum userspace_custom_keycodes {
     KC_SECRET_5,
     USERSPACE_KEYCODE_END
 };
+// clang-format on
 
 /* Define layer names */
 enum userspace_layers {
-  _QWERTY,
-  _LOWER,
-  _RAISE,
-  _FUNCTION,
-  _HOLDA,
-  _HOLDF,
-  _HOLDJ,
-  _BABBLE,
-  _NUMPAD,
-  _SYMBOLS,
-  _EMPTY,
+    _QWERTY,
+    _LOWER,
+    _RAISE,
+    _FUNCTION,
+    _HOLDA,
+    _HOLDF,
+    _HOLDJ,
+    _BABBLE,
+    _NUMPAD,
+    _SYMBOLS,
+    _EMPTY,
 };
 
 enum tap_dance_declarations {
     SPENT,
 };
+
+typedef union {
+    uint32_t   raw;
+    struct {
+        bool   babblepaste_mode : 1;
+    };
+} userspace_config_t;
+
+userspace_config_t userspace_config;

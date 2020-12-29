@@ -16,9 +16,9 @@ To switch modes, run the switch_babble_mode() function, or a pre defined BABL_DO
 
 ###To use the library
 #### Add #defines to your config.h.
-```
+```cpp
     #define USE_BABBLEPASTE
-    
+
     //// Uncomment the modes you want to enable
     #define BABL_WINDOWS
     #define BABL_READMUX
@@ -27,24 +27,24 @@ To switch modes, run the switch_babble_mode() function, or a pre defined BABL_DO
     #define BABL_LINUX
     #define BABL_EMACS
     #define BABL_CHROMEOS
-    
+
     //// These enable subsets of babble macros. Disable options to save space
     #define BABL_MOVE // Uncomment to add basic cursor movement
     #define BABL_OSKEYS // This adds Cut, paste, window movement and common OS shortcuts
     #define BABL_BROWSER // Browser shortcuts
-    
+
     //// What Browser shortcuts?
     #define BABL_BROWSER_CHROME // Chrome browser, Google apps
     //#define BABL_BROWSER_MS
     //#define BABL_BROWSER_SAFARI // Safari, Apple defaults.
-    
+
     //// applications vary even more between OSes. We'll do our best.
     #define BABL_APP
     // To enable specific App options.
     #define BABL_APP_CELLS // spreadsheets and tables
     #define BABL_APP_EDITOR // Fancy editor commands
     #define BABL_APP_WINDOWSPLITTING // splitting frames & windows
-    
+
     //// What App keybinding is assumed?
     //#define BABL_APP_GOOGLE // Google office
     #define BABL_APP_MSOFFICE // MS office
@@ -55,7 +55,7 @@ To switch modes, run the switch_babble_mode() function, or a pre defined BABL_DO
 #### Enable Babblepaste in your Keymap
 
 Add the following to your keymap in process_record_user, before the main switch statement.
-```
+```cpp
   #ifdef USE_BABBLEPASTE
        if( keycode > BABBLE_START && keycode < BABBLE_END_RANGE )  {
           if (record->event.pressed)  { // is there a case where this isn't desired?
@@ -71,13 +71,15 @@ Add the following to your keymap in process_record_user, before the main switch 
 
 Update your rules.mk to include the modes you want.
 
-    `SRC += babblePaste.c babl_windows.c babl_mac.c babl_vi.c babl_readmux.c  babl_chromeos.c babl_emacs.c babl_linux.c`
+```cpp
+SRC += babblePaste.c babl_windows.c babl_mac.c babl_vi.c babl_readmux.c  babl_chromeos.c babl_emacs.c babl_linux.c
+```
 
 
 #### Custom Keycodes
 
 If you are using custom keycodes, update the safe range in your user.h
-```
+```cpp
   #if defined(BABBLE_END_RANGE)
         #define USER_START BABBLE_END_RANGE
   #else
@@ -91,7 +93,7 @@ If you are using custom keycodes, update the safe range in your user.h
 
 #### Add Babblepaste actions to your keymap.
 See the full list in babblePaste.h, or the list below
-```
+```cpp
   B_WIN // switch babblepaste to  windows mode.
   B_MAC // Mac Mode
   B_LNX // switch to linux

@@ -41,8 +41,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define BABL_APP_CELLS // spreadsheets and tables
 #define BABL_APP_EDITOR // Fancy editor commands
 #define BABL_APP_WINDOWSPLITTING // splitting frames & windows
+#define BABL_BROWSER_CHROME // Chrome specific browser shortcuts like Dev Tools
+#define BABL_APP_VSCODE // Visual Studio Code shortcuts like select all occurrences
 
 //All OSes
 #define BABL_WINDOWS
-#define BABL_VI
 #define BABL_MAC
+
+/* #ifdef RGBLIGHT_ENABLE
+#define BABL_LED_INDEX 0 // set to 0 to set all LEDs , or set to # of LED to be used as BABL updaters
+#define RGBLIGHT_COLOR_MS 0x00,0x27,0x88 // blue screen?
+#define RGBLIGHT_COLOR_MAC 0xF0,0xF0,0xF0 // grey
+#define RGBLIGHT_COLOR_LINUX 0xF4,0xAA,0x90 // ubuntu orange?
+#define RGBLIGHT_COLOR_EMACS 0x00,0x00,0x00
+#define RGBLIGHT_COLOR_VI 0x00,0x90,0x00
+#define RGBLIGHT_COLOR_READMUX 0x33,0xFF,0x33 // green screen
+#define RGBLIGHT_COLOR_CHROMEOS 0xf4,0xc2,0xd // google yellows
+#endif
+ */

@@ -35,10 +35,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef USE_BABBLEPASTE
     if (keycode > BABBLE_START && keycode < BABBLE_END_RANGE) {
         if (is_pressed) {
-            if (keycode >= BABL_DO_MAC && keycode <= BABL_DO_VI) {
+            /* if (keycode >= BABL_DO_MAC && keycode <= BABL_DO_VI) {
                 userspace_config.raw = keycode;
                 eeconfig_update_user(userspace_config.raw);
-            }
+            } */
             babblePaste(keycode);
         } else {
             return true;
@@ -46,6 +46,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
 #endif
     switch (keycode) {
+        case QWERTY:
+            if (record->event.pressed) {
+                set_single_persistent_default_layer(_QWERTY);
+            }
+            return false;
+            break;
         case VRSN:
             if (is_pressed) {
                 send_string_with_delay_P(PSTR("# " QMK_KEYBOARD ":" QMK_KEYMAP " @ " QMK_BUILDDATE "\n"), MACRO_DELAY);
@@ -58,6 +64,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 send_unicode_string((is_shifted ? "¯\\_(ツ)_/¯" : "ಠ_ಠ"));
             }
             return false;
+            break;
 #endif
         case MOFO:
             if (is_pressed) {

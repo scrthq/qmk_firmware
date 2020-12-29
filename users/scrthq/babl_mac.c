@@ -104,6 +104,11 @@ bool babblePaste_mac(uint16_t keycode) {
     BABLM(BABL_APP_MULTI_SELECT, OMCTL(IMGUI(X_G)));  // add all occurences of current word to select.
     BABLM(BABL_APP_PASTE_VALUES, OMSFT(IMGUI(X_V)));  // paste with proper indenting.
 #                endif                                // sublime
+#                ifdef BABL_APP_VSCODE
+    // https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf
+    BABLM(BABL_APP_MULTI_SELECT, OMSFT(IMGUI(X_L)));  // add all occurences of current word to select.
+    BABLM(BABL_APP_FILE_LANGUAGE_SELECT, SS_LGUI("k") SS_TAP(X_M)); // File language selection
+#                endif                                // vscode
 #            endif                                    // editor
 
 #            ifdef BABL_APP_CELLS

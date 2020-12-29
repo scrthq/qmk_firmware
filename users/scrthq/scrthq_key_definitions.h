@@ -23,6 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 #define XXX     KC_NO
+#define ___     KC_TRANSPARENT
 
 // Rename mouse keys with 7 letters
 #ifdef MOUSEKEY_ENABLE
@@ -72,30 +73,60 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #endif
 
 #ifdef TAP_DANCE_ENABLE
-    #define TD_SPENT  TD(SPENT)
+    #define TD_SPENT    TD(SPENT)
+    #define TD_SPACELO  TD(SPACELO)
+    #define TD_SPACEHI  TD(SPACEHI)
+    #define TD_BBLGUI   TD(BBLGUI)
 #else
-    #define TD_SPENT  KC_ENT
+    #define TD_SPENT    KC_ENT
+    #define TD_SPACELO  LT(_LOWER,KC_SPC)
+    #define TD_SPACEHI  LT(_RAISE,KC_SPC)
+    #define TD_BBLGUI   KC_LGUI
 #endif
 
-#define HOLDA     LT(_HOLDA,KC_A)
-#define HOLDF     LT(_HOLDF,KC_F)
-#define HOLDJ     LT(_HOLDJ,KC_J)
-#define HOLDS     LT(_SYMBOLS,KC_S)
-#define HOLDD     LT(_NUMPAD,KC_D)
-#define HOLDMINS  LT(_BABBLE,KC_MINS)
-#define HOLDZ     CTL_T(KC_Z)
-#define CTLGRV    CTL_T(KC_GRV)
-#define MYMEH     MEH(KC_NO)
+#define HOLDK      LT(_HOLDF,KC_K)
+#define HOLDA      LT(_HOLDA,KC_A)
+#define HOLDF      LT(_HOLDF,KC_F)
+#define HOLDJ      LT(_HOLDJ,KC_J)
+#define HOLDJBAB   LT(_BABBLE,KC_J)
+#define HOLDS      LT(_SYMBOLS,KC_S)
+#define HOLDD      LT(_NUMPAD,KC_D)
+#define HOLDLEFT   LT(_SYMBOLS,KC_LEFT)
+#define HOLDRIGHT  LCA_T(KC_RIGHT)
+#define HOLDMINS   LT(_BABBLE,KC_MINS)
+#define HOLDGUI    LT(_BABBLE,KC_LGUI)
+#define HOLDRGUI   LT(_NUMPAD,KC_RGUI)
+#define OUTRSPCLO  LT(_LOWER,KC_SPC)
+#define OUTRSPCHI  LT(_RAISE,KC_SPC)
+#define OUTRENTHI  LT(_RAISE,KC_ENT)
+#define HOLDZ      CTL_T(KC_Z)
+#define CTLGRV     CTL_T(KC_GRV)
+#define MYMEH      MEH(KC_NO)
+#define FNESC      LT(_FUNCTION,KC_ESC)
+#define FNTAB      LT(_FUNCTION,KC_TAB)
+#define CTLRGHT    MT(KC_LCTRL,KC_RIGHT)
+#define CTLLEFT    MT(KC_LCTRL,KC_LEFT)
 
-#ifdef KEYBOARD_dm9records_plaid
-    #define BSSLSH   KC_BSPC
-    #define DELSLSH  KC_DEL
-#else
-    #define BSSLSH   KC_BSLASH
-    #define DELSLSH  KC_BSLASH
-#endif
+#define SCRT1      KC_SECRET_1
+#define SCRT2      KC_SECRET_2
+#define SCRT3      KC_SECRET_3
+#define SCRT4      KC_SECRET_4
+#define SCRT5      KC_SECRET_5
+#define SCRT6      KC_SECRET_6
+#define SCRT7      KC_SECRET_7
+#define SCRT8      KC_SECRET_8
+#define SCRT9      KC_SECRET_9
+#define SCRT10     KC_SECRET_10
+#define SS_EMAIL   KC_SECRET_11
+#define DLRUNDER   KC_SECRET_12
+#define SCRT13     KC_SECRET_13
+#define SCRT14     KC_SECRET_14
+#define SCRT15     KC_SECRET_15
+
+
 
 #define ___________________6_BLANK_________________   _______,    _______,   _______,   _______,   _______,   _______
+#define ___________________6_XXXXX_________________   XXXXXXX,    XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX
 
 // QWERTY (default) Layer
 #define _________________QWERTY_L0_________________   KC_EQUAL,   KC_1,      KC_2,      KC_3,      KC_4,      KC_5      // Not used on 40% boards like Plaid/Planck
@@ -105,7 +136,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ____________OLKB_QWERTY_L4_________________   CTLGRV,     KC_LGUI,   MYMEH,     KC_RALT,   LOWER,     KC_SPC
 
 #define _________________QWERTY_R0_________________   KC_6,       KC_7,      KC_8,      KC_9,      KC_0,      KC_BSPC   // Not used on 40% boards like Plaid/Planck
-#define _________________QWERTY_R1_________________   KC_Y,       KC_U,      KC_I,      KC_O,      KC_P,      BSSLSH    // Use backspace here if this is a 40% board, otherwise use backslash
+#define _________________QWERTY_R1_________________   KC_Y,       KC_U,      KC_I,      KC_O,      KC_P,      KC_BSPC    // Use backspace here if this is a 40% board, otherwise use backslash
 #define _________________QWERTY_R2_________________   KC_H,       HOLDJ,     KC_K,      KC_L,      KC_SCLN,   KC_QUOT
 #define _________________QWERTY_R3_________________   KC_N,       KC_M,      KC_COMM,   KC_DOT,    KC_SLSH,   KC_RSPC
 #define ____________OLKB_QWERTY_R4_________________   KC_SPC,     RAISE,     KC_LEFT,   KC_DOWN,   KC_UP,     KC_RGHT
@@ -118,7 +149,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define _____________OLKB_LOWER_L4_________________   _______,    _______,   _______,   _______,   _______,   TD_SPENT
 
 #define __________________LOWER_R0_________________   KC_6,       KC_7,      KC_8,      KC_9,      KC_0,      KC_DEL   // Not used on 40% boards like Plaid/Planck
-#define __________________LOWER_R1_________________   KC_CIRC,    KC_AMPR,   KC_ASTR,   KC_LPRN,   KC_RPRN,   DELSLSH
+#define __________________LOWER_R1_________________   KC_CIRC,    KC_AMPR,   KC_ASTR,   KC_LPRN,   KC_RPRN,   KC_DEL
 #define __________________LOWER_R2_________________   _______,    KC_UNDS,   KC_PLUS,   KC_LCBR,   KC_RCBR,   KC_PIPE
 #define __________________LOWER_R3_________________   _______,    _______,   KC_LT,     KC_GT,     KC_QUES,   _______
 #define _____________OLKB_LOWER_R4_________________   TD_SPENT,   _______,   B_L1W,     B_PGDN,    B_PGUP,    B_R1W
@@ -131,9 +162,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define _____________OLKB_RAISE_L4_________________   _______,    _______,   B_INDENT,  B_DEDENT,  _______,   TD_SPENT
 
 #define __________________RAISE_R0_________________   KC_6,       KC_7,      KC_8,      KC_9,      KC_0,      KC_BSPC   // Not used on 40% boards like Plaid/Planck
-#define __________________RAISE_R1_________________   KC_6,       KC_7,      KC_8,      KC_9,      KC_0,      BSSLSH
+#define __________________RAISE_R1_________________   KC_6,       KC_7,      KC_8,      KC_9,      KC_0,      KC_PIPE
 #define __________________RAISE_R2_________________   _______,    KC_MINS,   KC_EQL,    KC_LBRC,   KC_RBRC,   KC_BSLS
-#define __________________RAISE_R3_________________   _______,    _______,   _______,   _______,   KC_SLSH,   _______
+#define __________________RAISE_R3_________________   _______,    _______,   _______,   _______,   _______,   _______
 #define _____________OLKB_RAISE_R4_________________   TD_SPENT,   _______,   B_L1W,     B_PGDN,    B_PGUP,    B_R1W
 
 

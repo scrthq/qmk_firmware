@@ -31,11 +31,23 @@ enum userspace_custom_keycodes {
     MOFO,
     VRSN,
     SHRUG,
+    QWERTY,
+    BACKLIT,
     KC_SECRET_1,
     KC_SECRET_2,
     KC_SECRET_3,
     KC_SECRET_4,
     KC_SECRET_5,
+    KC_SECRET_6,
+    KC_SECRET_7,
+    KC_SECRET_8,
+    KC_SECRET_9,
+    KC_SECRET_10,
+    KC_SECRET_11,
+    KC_SECRET_12,
+    KC_SECRET_13,
+    KC_SECRET_14,
+    KC_SECRET_15,
     USERSPACE_KEYCODE_END
 };
 // clang-format on
@@ -53,17 +65,28 @@ enum userspace_layers {
     _NUMPAD,
     _SYMBOLS,
     _EMPTY,
+    _ENCODER,
+    _CODE,
+    _GAMING,
 };
 
 enum tap_dance_declarations {
     SPENT,
+    SPACELO,
+    SPACEHI,
+    BBLGUI,
 };
 
-typedef union {
+enum hid_commands {
+    set_babblepaste_mac                 = 0x01,
+    set_babblepaste_win                 = 0x02,
+};
+
+/* typedef union {
     uint32_t   raw;
     struct {
         bool   babblepaste_mode : 1;
     };
 } userspace_config_t;
 
-userspace_config_t userspace_config;
+userspace_config_t userspace_config; */

@@ -175,6 +175,7 @@ enum babble_keycodes {
 #        endif                    // BABL_APP_CELLS
 #        ifdef BABL_APP_EDITOR
     BABL_APP_MULTI_SELECT, /* www.sublimetext.com/docs/2/multiple_selection_with_the_keyboard.html */
+    BABL_APP_FILE_LANGUAGE_SELECT, /* File language select - https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf */
 #        endif             // BABL_APP_EDITOR
 #        ifdef BABL_APP_WINDOWSPLITTING
     // These aren't useful on most oses.
@@ -343,6 +344,7 @@ bool babblePaste_chromeos(uint16_t keycode);
 #        ifdef BABL_APP_EDITOR
 #            define B_MSEL BABL_APP_MULTI_SELECT
 /* www.sublimetext.com/docs/2/multiple_selection_with_the_keyboard.html */
+#            define B_LSEL BABL_APP_FILE_LANGUAGE_SELECT
 #        endif  // BABL_APP_EDITOR
 #        ifdef BABL_APP_WINDOWSPLITTING
 #            define B_VSPLIT BABL_SPLIT_FRAME_VERT

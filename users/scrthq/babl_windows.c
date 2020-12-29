@@ -85,7 +85,7 @@ bool babblePaste_win(uint16_t keycode) {
 #            ifdef BABL_BROWSER_MS
     BABLM(BABL_BROWSER_DEV_TOOLS, IMCTL(X_F12));  // EDGE
 #            else
-    BABLM(BABL_BROWSER_DEV_TOOLS, SS_LCTRL("t"));  // Chrome
+    BABLM(BABL_BROWSER_DEV_TOOLS, OMSFT(SS_LCTRL("i")));  // Chrome
     BABLM(BABL_BROWSER_VIEWSRC, SS_LCTRL("u"));    // Chrome or firefox
 #            endif
     // chrome
@@ -103,7 +103,12 @@ bool babblePaste_win(uint16_t keycode) {
     // http://sweetme.at/2013/08/08/sublime-text-keyboard-shortcuts/
     BABLM(BABL_APP_MULTI_SELECT, IMALT(X_F3));        // add all occurences of current word to select.
     BABLM(BABL_APP_PASTE_VALUES, OMSFT(IMCTL(X_V)));  // paste with proper indenting.
-#                endif                                // sublime
+#                endif                                // sublime                              // sublime
+#                ifdef BABL_APP_VSCODE
+    // https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf
+    BABLM(BABL_APP_MULTI_SELECT, OMSFT(IMCTL(X_L)));  // add all occurences of current word to select.
+    BABLM(BABL_APP_FILE_LANGUAGE_SELECT, SS_LCTL("k") SS_TAP(X_M)); // File language selection
+#                endif
 #            endif                                    // editor
 
 #            ifdef BABL_APP_CELLS

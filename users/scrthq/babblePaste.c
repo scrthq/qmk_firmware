@@ -58,16 +58,6 @@ bool babblePaste(uint16_t keycode) {
     }
 #    endif
 
-#    ifdef BABL_VI
-    if (keycode == BABL_DO_VI) {
-        set_babble_mode(BABL_VI_MODE);
-        babble_led_user();
-        return true;
-    }
-    if (babble_mode == BABL_VI_MODE) {
-        babblePaste_vi(keycode);
-    }
-#    endif
 #    ifdef BABL_WINDOWS
     if (keycode == BABL_DO_WINDOWS) {
         set_babble_mode(BABL_WINDOWS_MODE);

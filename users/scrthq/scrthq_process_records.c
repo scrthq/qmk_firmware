@@ -22,6 +22,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "version.h"
 #include "eeprom.h"
 
+#ifdef USE_BABBLEPASTE
+extern uint8_t babble_mode;
+#endif
+
 __attribute__((weak)) bool process_record_secrets(uint16_t keycode, keyrecord_t *record) { return true; }
 
 __attribute__((weak)) bool process_record_keymap(uint16_t keycode, keyrecord_t *record) { return true; }
@@ -62,6 +66,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             bool is_shifted = get_mods() & MOD_MASK_SHIFT;
             if (is_pressed) {
                 send_unicode_string((is_shifted ? "¯\\_(ツ)_/¯" : "ಠ_ಠ"));
+            }
+            return false;
+            break;
+#endif
+#ifdef USE_BABBLEPASTE
+        case BABL_CUR_MODE:
+            if (is_pressed) {
+                switch (babble_mode) {
+                    case BABL_WINDOWS_MODE:
+                        SEND_STRING("Windows");
+                        break;
+                    case BABL_MAC_MODE:
+                        SEND_STRING("macOS");
+                        break;
+                    default:
+                        SEND_STRING("Unknown");
+                }
             }
             return false;
             break;

@@ -33,6 +33,7 @@ enum userspace_custom_keycodes {
     SHRUG,
     QWERTY,
     BACKLIT,
+    BABL_CUR_MODE,
     KC_SECRET_1,
     KC_SECRET_2,
     KC_SECRET_3,

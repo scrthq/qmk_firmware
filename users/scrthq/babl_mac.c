@@ -39,17 +39,19 @@ bool babblePaste_mac(uint16_t keycode) {
 #        endif
 #        ifdef BABL_OSKEYS
     BABLM(BABL_UNDO, SS_LGUI("z"));
-    BABLM(BABL_REDO, SS_LGUI("y"));
+    BABLM(BABL_REDO, OMGUI(IMSFT(X_Z)));
     BABLM(BABL_CUT, SS_LGUI("x"));
     BABLM(BABL_COPY, SS_LGUI("c"));
     BABLM(BABL_PASTE, SS_LGUI("v"));
+    BABLM(BABL_PASTE_PLAIN, OMSFT(IMGUI(X_V)));
+    BABLM(BABL_CLIP_HISTORY, OMALT(IMGUI(X_V)));
     BABLM(BABL_SELECT_ALL, SS_LGUI("a"));
     BABLM(BABL_FIND, SS_LGUI("f"));
     BABLM(BABL_FIND_NEXT, SS_LGUI("g"));
     // BABLM( BABL_FIND_NEXT, 	OMSFT(X_F4)) ); // Mac office
     BABLM(BABL_FIND_PREV, OMSFT(IMGUI(X_G)));  // Sublime, browser
     BABLM(BABL_FIND_PREV, SS_LGUI("g"));
-    BABLM(BABL_FIND_REPLACE, SS_LGUI("f"));
+    BABLM(BABL_FIND_REPLACE, OMALT(IMGUI(X_F)));
     BABLM(BABL_INDENT, IMGUI(X_LBRACKET));
     BABLM(BABL_DEDENT, IMGUI(X_RBRACKET));
     BABLM(BABL_RUNAPP, SS_LGUI(" "));
@@ -108,6 +110,10 @@ bool babblePaste_mac(uint16_t keycode) {
     // https://code.visualstudio.com/shortcuts/keyboard-shortcuts-macos.pdf
     BABLM(BABL_APP_MULTI_SELECT, OMSFT(IMGUI(X_L)));  // add all occurences of current word to select.
     BABLM(BABL_APP_FILE_LANGUAGE_SELECT, SS_LGUI("k") SS_TAP(X_M)); // File language selection
+    BABLM(BABL_APP_FOLD_ALL, SS_LGUI("k0")); // Fold all
+    BABLM(BABL_APP_UNFOLD_ALL, SS_LGUI("kj")); // Unfold all
+    BABLM(BABL_APP_FOLD_RECURSIVELY, SS_LGUI("k[")); // Fold recursively
+    BABLM(BABL_APP_UNFOLD_RECURSIVELY, SS_LGUI("k]")); // Unfold recursively
 #                endif                                // vscode
 #            endif                                    // editor
 

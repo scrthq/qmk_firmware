@@ -95,7 +95,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define HOLDRIGHT  LCA_T(KC_RIGHT)
 #define HOLDMINS   LT(_BABBLE,KC_MINS)
 #define HOLDGUI    LT(_BABBLE,KC_LGUI)
-#define HOLDRGUI   LT(_NUMPAD,KC_RGUI)
+#define HOLDRGUI   LT(_SYMBOLS,KC_RGUI)
 #define OUTRSPCLO  LT(_LOWER,KC_SPC)
 #define OUTRSPCHI  LT(_RAISE,KC_SPC)
 #define OUTRENTHI  LT(_RAISE,KC_ENT)

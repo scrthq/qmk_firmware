@@ -112,6 +112,8 @@ enum babble_keycodes {
     BABL_CUT,
     BABL_COPY,
     BABL_PASTE,
+    BABL_PASTE_PLAIN,
+    BABL_CLIP_HISTORY,
     BABL_SELECT_ALL,
     BABL_INDENT,
     BABL_DEDENT,
@@ -176,6 +178,10 @@ enum babble_keycodes {
 #        ifdef BABL_APP_EDITOR
     BABL_APP_MULTI_SELECT, /* www.sublimetext.com/docs/2/multiple_selection_with_the_keyboard.html */
     BABL_APP_FILE_LANGUAGE_SELECT, /* File language select - https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf */
+    BABL_APP_FOLD_ALL,
+    BABL_APP_UNFOLD_ALL,
+    BABL_APP_FOLD_RECURSIVELY,
+    BABL_APP_UNFOLD_RECURSIVELY,
 #        endif             // BABL_APP_EDITOR
 #        ifdef BABL_APP_WINDOWSPLITTING
     // These aren't useful on most oses.
@@ -285,6 +291,8 @@ bool babblePaste_chromeos(uint16_t keycode);
 #        define B_CUT BABL_CUT
 #        define B_COPY BABL_COPY
 #        define B_PASTE BABL_PASTE
+#        define B_PSTPLN BABL_PASTE_PLAIN
+#        define B_CLIPHIST BABL_CLIP_HISTORY
 #        define B_SELALL BABL_SELECT_ALL
 #        define B_SELA BABL_SELECT_ALL
 #        define B_FIND BABL_FIND
@@ -345,6 +353,10 @@ bool babblePaste_chromeos(uint16_t keycode);
 #            define B_MSEL BABL_APP_MULTI_SELECT
 /* www.sublimetext.com/docs/2/multiple_selection_with_the_keyboard.html */
 #            define B_LSEL BABL_APP_FILE_LANGUAGE_SELECT
+#            define B_FOLDALL BABL_APP_FOLD_ALL
+#            define B_UFOLDALL BABL_APP_UNFOLD_ALL
+#            define B_FOLDREC BABL_APP_FOLD_RECURSIVELY
+#            define B_UFOLDREC BABL_APP_UNFOLD_RECURSIVELY
 #        endif  // BABL_APP_EDITOR
 #        ifdef BABL_APP_WINDOWSPLITTING
 #            define B_VSPLIT BABL_SPLIT_FRAME_VERT

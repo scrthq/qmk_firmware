@@ -47,6 +47,8 @@ bool babblePaste_win(uint16_t keycode) {
     BABLM(BABL_CUT, SS_LCTRL("x"));
     BABLM(BABL_COPY, SS_LCTRL("c"));
     BABLM(BABL_PASTE, SS_LCTRL("v"));
+    BABLM(BABL_PASTE_PLAIN, OMSFT(IMCTL(X_V)));
+    BABLM(BABL_CLIP_HISTORY, SS_LGUI("v"));
     BABLM(BABL_SELECT_ALL, SS_LCTRL("a"));
     BABLM(BABL_FIND, SS_LCTRL("f"));
     BABLM(BABL_FIND_NEXT, SS_TAP(X_F3));
@@ -108,6 +110,10 @@ bool babblePaste_win(uint16_t keycode) {
     // https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf
     BABLM(BABL_APP_MULTI_SELECT, OMSFT(IMCTL(X_L)));  // add all occurences of current word to select.
     BABLM(BABL_APP_FILE_LANGUAGE_SELECT, SS_LCTL("k") SS_TAP(X_M)); // File language selection
+    BABLM(BABL_APP_FOLD_ALL, SS_LCTL("k0")); // Fold all
+    BABLM(BABL_APP_UNFOLD_ALL, SS_LCTL("kj")); // Unfold all
+    BABLM(BABL_APP_FOLD_RECURSIVELY, SS_LCTL("k[")); // Fold recursively
+    BABLM(BABL_APP_UNFOLD_RECURSIVELY, SS_LCTL("k]")); // Unfold recursively
 #                endif
 #            endif                                    // editor
 

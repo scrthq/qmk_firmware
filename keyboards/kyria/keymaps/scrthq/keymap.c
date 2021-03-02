@@ -37,14 +37,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         FNTAB,    KC_Q,   KC_W,   KC_E,  KC_R,  KC_T,                                         KC_Y, KC_U,  KC_I,  KC_O,  KC_P,    KC_BSPC,
         HOLDMINS, KC_A,   HOLDS,  HOLDD, HOLDF, KC_G,                                         KC_H, HOLDJBAB, HOLDK, KC_L,  KC_SCLN, KC_QUOT,
         KC_LSPO,  HOLDZ,  KC_X,   KC_C,  KC_V,  KC_B,   KC_NO,  FNESC,          HYPR_T(KC_ESC), MYMEH, KC_N, KC_M,  KC_COMM,KC_DOT,KC_SLSH,KC_RSPC,
-                    TG(_ENCODER), CTLGRV,  OUTRSPCLO, KC_LALT,  KC_LGUI,        HOLDRGUI, HOLDLEFT,  OUTRENTHI, HOLDRIGHT, TG(_ENCODER)
-    ),
-
-    [_ENCODER] = LAYOUT_scrthq_kyria(
-        RGB_TOG,  _______, B_WIN,   B_MAC,   _______, _______,                                                _______, _______, _______, _______, _______, _______,
-        RGB_MOD,  _______, _______, _______, _______, TO(_GAMING),                                            _______, _______, _______, _______, _______, _______,
-        RGB_RMOD, _______, _______, _______, _______, _______, _______, _______,            _______, _______, _______, B_MAC,   _______, _______, _______, _______,
-                                TO(_QWERTY), _______, _______, _______, _______,            _______, _______, _______, _______, TO(_QWERTY)
+                    TG(_SYMBOLS), CTLGRV,  OUTRSPCLO, KC_LALT,  KC_LGUI,        HOLDRGUI, HOLDLEFT,  OUTRENTHI, HOLDRIGHT, TG(_SYMBOLS)
     ),
 
     [_LOWER] = LAYOUT_scrthq_kyria(
@@ -62,73 +55,46 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_FUNCTION] = LAYOUT_scrthq_kyria(
-        RESET,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                             KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______,
-        KC_CAPS, SCRT1,   SCRT2,   SCRT3,   SCRT4,   SCRT5,                                             SCRT6,   SCRT7,   SCRT8,   SCRT9,   SCRT10,  _______,
-        _______, _______, _______, _______, _______, _______, _______, _______,       _______, _______, SS_EMAIL,_______, _______, _______, _______, _______,
+        RESET,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                             KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
+        KC_CAPS, SCRT1,   SCRT2,   SCRT3,   SCRT4,   SCRT5,                                             SCRT6,   SCRT7,   SCRT8,   SCRT9,   SCRT10,  KC_F12,
+        _______, _______, _______, _______, _______, _______, _______, _______,       _______, _______, SS_EMAIL,_______, _______, _______, _______, KC_F13,
                                 _______,  _______,  _______,  _______, _______,       _______, _______, _______, _______, TO(_QWERTY)
     ),
 
-/*     [_HOLDJ] = LAYOUT_scrthq_kyria(
-        RGB_TOG, B_WIN, SGUI(KC_W), B_MAC, SGUI(KC_R), B_ROTB,                                      B_REDO, B_NLIST,  B_BLIST, B_ZOUT,  B_ZIN,   B_SCAP,
-        RGB_MOD, B_SELALL, B_SAVE, B_BDEV, B_FIND, _______,                                         _______, _______, KC_EQL,  KC_LBRC,  KC_RBRC,  KC_BSLS,
-        RGB_RMOD,B_UNDO,   B_CUT,  B_COPY, B_PASTE, B_MODE, B_GSOL, B_GEOL,       _______, _______, B_NTAB,  B_MSEL, _______, _______, _______, _______,
-                                _______, B_INDENT, B_DEDENT, B_L1W, B_R1W,      _______, _______, _______, _______, TO(_QWERTY)
-    ), */
-
     [_BABBLE] = LAYOUT_scrthq_kyria(
-        _______, B_WIN,    B_DLW,  B_MAC, B_BRLD, B_ROTB,                                      B_REDO, B_NLIST,  B_BLIST, B_ZOUT,  B_ZIN,   B_SCAP,
-        _______, B_SELALL, B_SAVE, B_BDEV, B_FIND, _______,                                    DLRUNDER, _______, KC_EQUAL,  B_MSEL,  _______,  _______,
-        _______,B_UNDO,    B_CUT,  B_COPY, B_PASTE, B_MODE, B_GSOL, B_GEOL,       B_GSOL, B_GEOL, B_NTAB,  B_CTAB, _______, _______, _______, _______,
-                                _______, B_INDENT, B_DEDENT, B_L1W, B_R1W,      _______, HYPR(KC_LEFT), _______, HYPR(KC_RGHT), TO(_QWERTY)
+        _______, B_WIN,    B_DLW,  B_MAC, B_BRLD, B_ROTB,                                      B_REDO,   B_NLIST, B_BLIST,  B_ZOUT,  B_ZIN,   B_SCAP,
+        _______, B_SELALL, B_SAVE, B_BDEV, B_FIND, B_CLIPHIST,                                 B_RPLACE, _______, KC_EQUAL, B_MSEL,  _______, _______,
+        _______,B_UNDO,    B_CUT,  B_COPY, B_PASTE, B_PSTPLN, B_GSOL, B_GEOL,       B_GSOL, B_GEOL, B_NTAB,  B_CTAB,_______, _______, _______, _______,
+                    _______, B_INDENT, B_DEDENT, HYPR(KC_LEFT), HYPR(KC_RGHT),      _______, HYPR(KC_LEFT), _______, HYPR(KC_RGHT), TO(_QWERTY)
     ),
 
     [_HOLDF] = LAYOUT_scrthq_kyria(
-        KC_PLUS, KC_EQUAL, SGUI(KC_W), _______, SGUI(KC_R), SCRT3,                                         _______, _______, _______, _______, KC_LBRC, KC_RBRC,
-        KC_DLR,  KC_UNDS, _______,     DLRUNDER,  _______,    _______,                                       DLRUNDER, _______, _______, B_MSEL,  KC_LCBR, KC_RCBR,
+        KC_PLUS, KC_EQUAL, SGUI(KC_W), _______, SGUI(KC_R), MEH(KC_T),                                         _______, _______, _______, _______, KC_LBRC, KC_RBRC,
+        KC_DLR,  KC_UNDS, MEH(KC_S),     DLRUNDER,  _______,    _______,                                       DLRUNDER, _______, _______, B_MSEL,  KC_LCBR, KC_RCBR,
         LSFT(KC_8),KC_SLASH, _______, _______, _______, _______, _______, _______,       _______, _______, _______, B_LSEL,  _______, _______, KC_LPRN, KC_RPRN,
-                                _______, KC_F5, KC_F8, _______, _______,                 _______, HYPR(KC_LEFT), _______, HYPR(KC_RGHT), TO(_QWERTY)
+                                _______, KC_F5, KC_F8, B_GSOL, B_GEOL,                   B_FOLDALL, B_FOLDREC, B_UFOLDREC, B_UFOLDALL, TO(_QWERTY)
     ),
 
     [_NUMPAD] = LAYOUT_scrthq_kyria(
         _______, LCTL(KC_1), LCTL(KC_2), LCTL(KC_3), LCTL(KC_4), LCTL(KC_5),                               _______, KC_7,     KC_8,     KC_9, _______, _______,
         _______, _______, _______, _______, _______, _______,                                              _______, KC_4,     KC_5,     KC_6, _______, _______,
         _______, _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, KC_1,     KC_2,     KC_3, _______, _______,
-                                _______, _______, _______, _______, _______,             _______, _______, KC_0, KC_0, TO(_QWERTY)
+                                _______, _______, _______, B_L1W, B_R1W,                 _______, _______, KC_0, KC_0, TO(_QWERTY)
     ),
 
     [_SYMBOLS] = LAYOUT_scrthq_kyria(
         RGB_TOG,  _______, _______, _______, _______, _______,                                                _______, LSFT(KC_7),     LSFT(KC_8),     LSFT(KC_9), _______, _______,
-        RGB_MOD,  _______, _______, _______, _______, _______,                                                _______, LSFT(KC_4),     LSFT(KC_5),     LSFT(KC_6), _______, KC_MINUS,
+        RGB_MOD,  _______, _______, _______, _______, TO(_GAMING),                                            _______, LSFT(KC_4),     LSFT(KC_5),     LSFT(KC_6), _______, KC_MINUS,
         RGB_RMOD, _______, _______, _______, _______, _______, _______, _______,            _______, _______, _______, LSFT(KC_1),     LSFT(KC_2),     LSFT(KC_3), _______, _______,
-                                    _______, _______, _______, _______, _______,           _______, _______, LSFT(KC_0), LSFT(KC_0), TO(_QWERTY)
+                                TO(_QWERTY), _______, _______, B_GTOP, B_GEND,              _______, _______, LSFT(KC_0), LSFT(KC_0), TO(_QWERTY)
     ),
 
     [_GAMING] = LAYOUT_scrthq_kyria(
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R, KC_T,                                     KC_Y, KC_U,  KC_I,  KC_O,  KC_P,    KC_BSPC,
-        KC_LSHIFT,KC_A,   KC_S,    KC_D,    KC_F, KC_G,                                     KC_H, HOLDJBAB, HOLDK, KC_L,  KC_SCLN, KC_QUOT,
+        KC_ESCAPE,KC_A,   KC_S,    KC_D,    KC_F, KC_G,                                     KC_H, HOLDJBAB, HOLDK, KC_L,  KC_SCLN, KC_QUOT,
         KC_LSHIFT,KC_Z,   KC_X,    KC_C,    KC_V, KC_B,     KC_3,    KC_2,    FNESC, MYMEH, KC_N, KC_M,  KC_COMM,KC_DOT,KC_SLSH,KC_RSPC,
                         TO(_QWERTY), KC_LCTRL, KC_SPACE, KC_LALT, KC_1,      HOLDRGUI, HOLDLEFT,  OUTRENTHI, HOLDRIGHT, TO(_QWERTY)
     )
-/*
-//  * Layer template
-//  *
-//  * ,-------------------------------------------.                              ,-------------------------------------------.
-//  * |        |      |      |      |      |      |                              |      |      |      |      |      |        |
-//  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
-//  * |        |      |      |      |      |      |                              |      |      |      |      |      |        |
-//  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
-//  * |        |      |      |      |      |      |      |      |  |      |      |      |      |      |      |      |        |
-//  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------'
-//  *                        |      |      |      |      |      |  |      |      |      |      |      |
-//  *                        |      |      |      |      |      |  |      |      |      |      |      |
-//  *                        `----------------------------------'  `----------------------------------'
-//  */
-//     [_LAYERINDEX] = LAYOUT_scrthq_kyria(
-//       _______, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, _______,
-//       _______, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, _______,
-//       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-//                                  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
-//     ),
 };
 
 #ifdef OLED_DRIVER_ENABLE
@@ -139,7 +105,7 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 
 static void render_status(void) {
     // Host Keyboard Layer Status
-    oled_write_ln_P(PSTR(" ~ ~ Kyria x QMK ~ ~"), false);
+    //oled_write_ln_P(PSTR(" ~ ~ Kyria x QMK ~ ~"), false);
     oled_write_P(PSTR("\n\nLayer: "), false);
     switch (get_highest_layer(layer_state)) {
         case _QWERTY:
@@ -172,9 +138,9 @@ static void render_status(void) {
         case _SYMBOLS:
             oled_write_P(PSTR("SYMBOLS"), false);
             break;
-        case _ENCODER:
-            oled_write_P(PSTR("ENCODER"), false);
-            break;
+        //case _ENCODER:
+        //    oled_write_P(PSTR("ENCODER"), false);
+        //    break;
         case _CODE:
             oled_write_P(PSTR("CODE"), false);
             break;
@@ -198,14 +164,14 @@ static void render_status(void) {
             oled_write_P(PSTR("Undefined"), false);
     }
     #endif
-    #ifdef RGBLIGHT_ENABLE
-    static char rgbStatusLine1[26] = {0};
-    snprintf(rgbStatusLine1, sizeof(rgbStatusLine1), "\n\nRGB Mode: %d", rgblight_get_mode());
-    oled_write_ln(rgbStatusLine1, false);
+    //#ifdef RGBLIGHT_ENABLE
+    //static char rgbStatusLine1[26] = {0};
+    //snprintf(rgbStatusLine1, sizeof(rgbStatusLine1), "\n\nRGB Mode: %d", rgblight_get_mode());
+    //oled_write_ln(rgbStatusLine1, false);
     //static char rgbStatusLine2[26] = {0};
     //snprintf(rgbStatusLine2, sizeof(rgbStatusLine2), "h:%d s:%d v:%d", rgblight_get_hue(), rgblight_get_sat(), rgblight_get_val());
     //oled_write_ln(rgbStatusLine2, false);
-    #endif
+    //#endif
 }
 
 /* layer_state_t layer_state_set_user(layer_state_t state) {

@@ -21,13 +21,3 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NO_ACTION_MACRO
 #define NO_ACTION_FUNCTION
 #define NO_ACTION_ONESHOT
-
-//#ifdef RGBLIGHT_ANIMATIONS
-//#undef RGBLIGHT_ANIMATIONS
-//#endif
-//
-//#define RGBLIGHT_EFFECT_ALTERNATING
-//#define RGBLIGHT_EFFECT_BREATHING
-//#define RGBLIGHT_EFFECT_KNIGHT
-//#define RGBLIGHT_EFFECT_RGB_TEST
-//#define RGBLIGHT_EFFECT_STATIC_GRADIENT

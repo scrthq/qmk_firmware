@@ -17,29 +17,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include QMK_KEYBOARD_H
 #include "scrthq.h"
-#include "scrthq_layouts.h"
 #include "scrthq_key_definitions.h"
 #include <stdio.h>
-
-bool has_layer_changed = false;
-static uint8_t current_layer;
-
-bool is_alt_tab_active = false;
-uint16_t alt_tab_timer = 0;
-bool is_ctl_tab_active = false;
-uint16_t ctl_tab_timer = 0;
-uint16_t tab_time_limit = 1200;
-
-#ifdef USE_BABBLEPASTE
-extern uint8_t babble_mode;
-#endif
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT_1u(
         FNTAB,      KC_Q,     KC_W,     KC_E,      KC_R,     KC_T,           KC_Y,      KC_U,       KC_I,       KC_O,       KC_P,       KC_BSPC,
         HOLDMINS,   KC_A,     HOLDS,    HOLDD,     HOLDF,    KC_G,           KC_H,      HOLDJBAB,   HOLDK,      KC_L,       KC_SCLN,    KC_QUOT,
         KC_LSPO,    HOLDZ,    KC_X,     KC_C,      KC_V,     KC_B,           KC_N,      KC_M,       KC_COMM,    KC_DOT,     KC_SLSH,    KC_RSPC,
-        CTLGRV,                         KC_LALT,   OUTRSPCLO,KC_LGUI,        HOLDLEFT,   OUTRENTHI, HOLDRIGHT,                          FNESC
+        CTLGRV,                         KC_LALT,   OUTRSPCLO,KC_LGUI,        HOLDLEFT,   OUTRENTHI, HOLDRIGHT,                          FNMEH
     ),
 
     [_LOWER] = LAYOUT_1u(
@@ -98,58 +84,3 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LCTRL,                           KC_LALT,    KC_SPACE,   KC_1,           KC_F4,      KC_0,       KC_0,                              TO(_QWERTY)
     )
 };
-
-void matrix_scan_user(void) {
-#ifdef RGBLIGHT_ENABLE
-    uint8_t layer = biton32(layer_state);
-
-    if (current_layer == layer) {
-        has_layer_changed = false;
-    } else {
-        has_layer_changed = true;
-        current_layer = layer;
-    }
-    if (has_layer_changed) {
-        switch (get_highest_layer(layer_state)) {
-            case _QWERTY:
-                rgblight_sethsv(122,255,255);
-                break;
-            case _LOWER:
-                rgblight_sethsv(189,255,255);
-                break;
-            case _RAISE:
-                rgblight_sethsv(199,255,255);
-                break;
-            case _FUNCTION:
-                rgblight_sethsv(202,255,255);
-                break;
-            //case _HOLDA:
-            //    rgblight_sethsv(000,255,255);
-            //    break;
-            case _HOLDJ:
-                rgblight_sethsv(180,255,255);
-                break;
-            case _HOLDF:
-                rgblight_sethsv(26,255,255);
-                break;
-            case _BABBLE:
-                rgblight_sethsv(140,255,255);
-                break;
-            case _NUMPAD:
-                rgblight_sethsv(90,255,255);
-                break;
-            case _SYMBOLS:
-                rgblight_sethsv(156,255,255);
-                break;
-            case _CODE:
-                rgblight_sethsv(138,255,255);
-                break;
-            case _GAMING:
-                rgblight_sethsv(255,255,255);
-                break;
-            default:
-                rgblight_sethsv(000,255,255);
-        }
-    }
-#endif
-}

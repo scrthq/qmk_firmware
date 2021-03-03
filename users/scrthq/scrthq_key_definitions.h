@@ -102,6 +102,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define HOLDZ      CTL_T(KC_Z)
 #define CTLGRV     CTL_T(KC_GRV)
 #define MYMEH      MEH(KC_NO)
+#define FNMEH      LT(_FUNCTION,KC_MEH)
 #define FNESC      LT(_FUNCTION,KC_ESC)
 #define FNTAB      LT(_FUNCTION,KC_TAB)
 #define CTLRGHT    MT(KC_LCTRL,KC_RIGHT)

@@ -88,7 +88,6 @@ void babble_led_user(void) {
 /*
 #ifdef RGBLIGHT_ENABLE
 #  ifdef USE_BABBLEPASTE
-    extern uint8_t babble_mode;
 
 #    ifdef BABL_WINDOWS
     if (babble_mode == BABL_WINDOWS_MODE) {
@@ -155,5 +154,5 @@ void babble_led_user(void) {
 #    endif
 #  endif  // bablepaste
 #endif  // rgblight_enable
- */
+*/
 }

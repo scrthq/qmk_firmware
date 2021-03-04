@@ -12,8 +12,3 @@ ifneq ($(strip $(NO_SECRETS)), yes)
         SRC += scrthq_secrets.c
     endif
 endif
-
-CONSOLE_ENABLE = no
-#MOUSEKEY_ENABLE = no
-EXTRAKEY_ENABLE = no
-TAP_DANCE_ENABLE = no

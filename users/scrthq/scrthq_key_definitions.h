@@ -122,6 +122,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define SCRT13     KC_SECRET_13
 #define SCRT14     KC_SECRET_14
 #define SCRT15     KC_SECRET_15
+#define SCRT16     KC_SECRET_16
 
 
 

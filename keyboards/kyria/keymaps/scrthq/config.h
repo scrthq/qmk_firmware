@@ -42,8 +42,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     //#define RBGLIGHT_LED_MAP {9,8,6,7,5,3,2,4,1,0,10,12,13,11,14,16,17,15,18,19} // Orients Kyria LEDs for a left half-right half columnar progression.
     //#define RGBLIGHT_EFFECT_RGB_TEST
     //#define RGBLIGHT_EFFECT_RAINBOW_SWIRL
+    //#define RGBLIGHT_EFFECT_STATIC_GRADIENT
+    //#define RGBLIGHT_SLEEP
+
+    #undef RGBLED_NUM
     #define RGBLIGHT_EFFECT_STATIC_GRADIENT
-    #define RGBLIGHT_SLEEP
+    #define RGBLIGHT_EFFECT_RAINBOW_SWIRL
+    #define RGBLED_NUM 12
+    #define RGBLIGHT_HUE_STEP 8
+    #define RGBLIGHT_SAT_STEP 8
 #endif
 
 #ifdef ENCODER_ENABLE

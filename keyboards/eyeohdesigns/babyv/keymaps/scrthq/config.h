@@ -21,3 +21,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define NO_ACTION_MACRO
 #define NO_ACTION_FUNCTION
 #define NO_ACTION_ONESHOT
+
+
+#ifdef RGBLIGHT_ENABLE
+    //#define RGBLIGHT_EFFECT_STATIC_GRADIENT
+
+    #undef RGBLED_NUM
+    #define RGBLIGHT_EFFECT_STATIC_GRADIENT
+    #define RGBLIGHT_EFFECT_RAINBOW_SWIRL
+    #define RGBLED_NUM 12
+    #define RGBLIGHT_HUE_STEP 8
+    #define RGBLIGHT_SAT_STEP 8
+#endif

@@ -24,7 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // clang-format off
 // Custom keycodes
-enum userspace_custom_keycodes {
+enum scrthq_userspace_custom_keycodes {
     USERSPACE_KEYCODE_START = 50000,
     LOWER,
     RAISE,
@@ -49,12 +49,13 @@ enum userspace_custom_keycodes {
     KC_SECRET_13,
     KC_SECRET_14,
     KC_SECRET_15,
+    KC_SECRET_16,
     USERSPACE_KEYCODE_END
 };
 // clang-format on
 
 /* Define layer names */
-enum userspace_layers {
+enum scrthq_userspace_layers {
     _QWERTY,
     _LOWER,
     _RAISE,
@@ -71,14 +72,14 @@ enum userspace_layers {
     _GAMING,
 };
 
-enum tap_dance_declarations {
+enum scrthq_tap_dance_declarations {
     SPENT,
     SPACELO,
     SPACEHI,
     BBLGUI,
 };
 
-enum hid_commands {
+enum scrthq_hid_commands {
     set_babblepaste_mac                 = 0x01,
     set_babblepaste_win                 = 0x02,
 };

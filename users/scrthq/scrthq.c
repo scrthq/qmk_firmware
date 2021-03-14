@@ -41,11 +41,68 @@ extern uint8_t babble_mode;
     };
 #endif
 
+void set_layer_led_user(void) {
+    #ifdef RGBLIGHT_ENABLE
+        switch (get_highest_layer(layer_state)) {
+            case _QWERTY:
+                #ifdef USE_BABBLEPASTE
+                    switch (babble_mode) {
+                        case BABL_WINDOWS_MODE:
+                            rgblight_sethsv(30,255,255);
+                            break;
+                        case BABL_MAC_MODE:
+                            rgblight_sethsv(122,255,255);
+                            break;
+                        default:
+                            rgblight_sethsv(250,255,255);
+                            break;
+                    }
+                #else
+                    rgblight_sethsv(122,255,255);
+                #endif
+                break;
+            case _LOWER:
+                rgblight_sethsv(189,255,255);
+                break;
+            case _RAISE:
+                rgblight_sethsv(199,255,255);
+                break;
+            case _FUNCTION:
+                rgblight_sethsv(202,255,255);
+                break;
+            //case _HOLDA:
+            //    rgblight_sethsv(000,255,255);
+            //    break;
+            case _HOLDJ:
+                rgblight_sethsv(180,255,255);
+                break;
+            case _HOLDF:
+                rgblight_sethsv(26,255,255);
+                break;
+            case _BABBLE:
+                rgblight_sethsv(140,255,255);
+                break;
+            case _NUMPAD:
+                rgblight_sethsv(90,255,255);
+                break;
+            case _SYMBOLS:
+                rgblight_sethsv(156,255,255);
+                break;
+            case _CODE:
+                rgblight_sethsv(138,255,255);
+                break;
+            case _GAMING:
+                rgblight_sethsv(255,255,255);
+                break;
+            default:
+                rgblight_sethsv(000,255,255);
+                break;
+        }
+    #endif
+}
+
 void keyboard_post_init_user(void) {
-    /* #ifdef RGBLIGHT_ENABLE
-    rgblight_enable_noeeprom(); // enables Rgb, without saving settings
-    rgblight_sethsv_noeeprom(255, 255, 255); // sets the color to teal/cyan without saving
-    #endif */
+    set_layer_led_user();
 }
 
 #ifdef RAW_ENABLE
@@ -61,7 +118,7 @@ void raw_hid_receive(uint8_t *data, uint8_t length) {
         case set_babblepaste_mac: {
             if (babble_mode != BABL_MAC_MODE) {
                 set_babble_mode(BABL_MAC_MODE);
-                babble_led_user();
+                set_layer_led_user();
             }
             break;
         }
@@ -70,7 +127,7 @@ void raw_hid_receive(uint8_t *data, uint8_t length) {
         case set_babblepaste_win: {
             if (babble_mode != BABL_WINDOWS_MODE) {
                 set_babble_mode(BABL_WINDOWS_MODE);
-                babble_led_user();
+                set_layer_led_user();
             }
             break;
         }
@@ -83,76 +140,3 @@ void raw_hid_receive(uint8_t *data, uint8_t length) {
     raw_hid_send(data, length);
 }
 #endif
-
-void babble_led_user(void) {
-/*
-#ifdef RGBLIGHT_ENABLE
-#  ifdef USE_BABBLEPASTE
-
-#    ifdef BABL_WINDOWS
-    if (babble_mode == BABL_WINDOWS_MODE) {
-        if (BABL_LED_INDEX > 0) {
-            rgblight_setrgb_at(RGBLIGHT_COLOR_MS, BABL_LED_INDEX);
-        } else {
-            rgblight_setrgb(RGBLIGHT_COLOR_MS);
-        }
-    }
-#    endif
-#    ifdef BABL_READMUX
-    if (babble_mode == BABL_READMUX_MODE) {
-        if (BABL_LED_INDEX > 0) {
-            rgblight_setrgb_at(RGBLIGHT_COLOR_READMUX, BABL_LED_INDEX);
-        } else {
-            rgblight_setrgb(RGBLIGHT_COLOR_READMUX);
-        }
-    }
-#    endif
-#    ifdef BABL_MAC
-    if (babble_mode == BABL_MAC_MODE) {
-        if (BABL_LED_INDEX > 0) {
-            rgblight_setrgb_at(RGBLIGHT_COLOR_MAC, BABL_LED_INDEX);
-        } else {
-            rgblight_setrgb(RGBLIGHT_COLOR_MAC);
-        }
-    }
-#    endif
-#    ifdef BABL_VI
-    if (babble_mode == BABL_VI_MODE) {
-        if (BABL_LED_INDEX > 0) {
-            rgblight_setrgb_at(RGBLIGHT_COLOR_VI, BABL_LED_INDEX);
-        } else {
-            rgblight_setrgb(RGBLIGHT_COLOR_VI);
-        }
-    }
-#    endif
-#    ifdef BABL_EMACS
-    if (babble_mode == BABL_EMACS_MODE) {
-        if (BABL_LED_INDEX > 0) {
-            rgblight_setrgb_at(RGBLIGHT_COLOR_EMACS, BABL_LED_INDEX);
-        } else {
-            rgblight_setrgb(RGBLIGHT_COLOR_EMACS);
-        }
-    }
-#    endif
-#    ifdef BABL_CHROMEOS
-    if (babble_mode == BABL_CHROMEOS_MODE) {
-        if (BABL_LED_INDEX > 0) {
-            rgblight_setrgb_at(RGBLIGHT_COLOR_CHROMEOS, BABL_LED_INDEX);
-        } else {
-            rgblight_setrgb(RGBLIGHT_COLOR_CHROMEOS);
-        }
-    }
-#    endif
-#    ifdef BABL_LINUX
-    if (babble_mode == BABL_LINUX_MODE) {
-        if (BABL_LED_INDEX > 0) {
-            rgblight_setrgb_at(RGBLIGHT_COLOR_LINUX, BABL_LED_INDEX);
-        } else {
-            rgblight_setrgb(RGBLIGHT_COLOR_LINUX);
-        }
-    }
-#    endif
-#  endif  // bablepaste
-#endif  // rgblight_enable
-*/
-}

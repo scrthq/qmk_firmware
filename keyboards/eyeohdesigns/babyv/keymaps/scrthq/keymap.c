@@ -46,14 +46,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         RESET,      KC_F1,      KC_F2,       KC_F3,     KC_F4,     KC_F5,           KC_F6,      KC_F7,     KC_F8,      KC_F9,      KC_F10,     KC_F11,
         KC_CAPS,    SCRT1,      SCRT2,       SCRT3,     SCRT4,     SCRT5,           SCRT6,      SCRT7,     SCRT8,      SCRT9,      SCRT10,     KC_F12,
         _______,    _______,    _______,     _______,   _______,   _______,         SS_EMAIL,   _______,   _______,    _______,    _______,    KC_F13,
-        RESET,                               _______,   _______,   _______,         _______,    _______,   _______,                            _______
+        RESET,                               SS_EMAIL,  DLRUNDER,  SCRT13,          SCRT14,     SCRT15,    SCRT16,                            _______
     ),
 
     [_BABBLE] = LAYOUT_1u(
         _______,    B_WIN,      B_DLW,       B_MAC,     B_BRLD,    B_ROTB,          B_REDO,     B_NLIST,    B_BLIST,   B_ZOUT,     B_ZIN,      B_SCAP,
         _______,    B_SELALL,   B_SAVE,      B_BDEV,    B_FIND,    B_CLIPHIST,      B_RPLACE,   _______,    KC_EQUAL,  B_MSEL,     _______,    _______,
         _______,    B_UNDO,     B_CUT,       B_COPY,    B_PASTE,   B_PSTPLN,        B_NTAB,     B_CTAB,     _______,   _______,    _______,    _______,
-        HYPR(KC_LEFT),                       B_INDENT,  B_DEDENT,  HYPR(KC_RGHT),   HYPR(KC_LEFT), _______, _______,                           HYPR(KC_RGHT)
+        HYPR(KC_LEFT),                       B_INDENT,  B_DEDENT,  HYPR(KC_RGHT),   HYPR(KC_LEFT), _______, HYPR(KC_RGHT),                     _______
     ),
 
     [_HOLDF] = LAYOUT_1u(
@@ -71,10 +71,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 
     [_SYMBOLS] = LAYOUT_1u(
-        RGB_TOG,    RGB_HUI,    RGB_HUD,    _______,    _______,    _______,        _______,    LSFT(KC_7), LSFT(KC_8),LSFT(KC_9), _______,    _______,
-        RGB_MOD,    RGB_SAI,    RGB_SAD,    _______,    _______,    TO(_GAMING),    _______,    LSFT(KC_4), LSFT(KC_5),LSFT(KC_6), _______,    KC_MINUS,
-        RGB_RMOD,   RGB_VAI,    RGB_VAD,    _______,    _______,    _______,        _______,    LSFT(KC_1), LSFT(KC_2),LSFT(KC_3), _______,    _______,
-        _______,                            _______,    B_GTOP,     B_GEND,      BABL_CUR_MODE, LSFT(KC_0), LSFT(KC_0),                        TO(_QWERTY)
+        RGB_TOG,    RGB_HUI,    B_WIN,      RGB_HUD,    _______,    _______,        _______,    LSFT(KC_7), LSFT(KC_8),LSFT(KC_9), _______,    _______,
+        RGB_MOD,    RGB_SAI,    _______,    RGB_SAD,    _______,    TO(_GAMING),    _______,    LSFT(KC_4), LSFT(KC_5),LSFT(KC_6), _______,    KC_MINUS,
+        RGB_RMOD,   RGB_VAI,    B_MAC,      RGB_VAD,    _______,    _______,        _______,    LSFT(KC_1), LSFT(KC_2),LSFT(KC_3), _______,    _______,
+        BABL_CUR_MODE,                      _______,    B_GTOP,     B_GEND,         _______,    LSFT(KC_0), LSFT(KC_0),                        TO(_QWERTY)
     ),
 
     [_GAMING] = LAYOUT_1u(

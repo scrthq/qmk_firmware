@@ -31,6 +31,8 @@ static uint8_t current_layer;
 extern uint8_t babble_mode;
 #endif
 
+__attribute__((weak)) void set_layer_led_user(void) { return; }
+
 void matrix_scan_user(void) {
     uint8_t layer = biton32(layer_state);
     if (is_alt_tab_active) {
@@ -63,52 +65,7 @@ void matrix_scan_user(void) {
         has_layer_changed = true;
         current_layer = layer;
     }
-#ifdef RGBLIGHT_ENABLE
     if (has_layer_changed) {
-        switch (get_highest_layer(layer_state)) {
-            case _QWERTY:
-                rgblight_sethsv(122,255,255);
-                break;
-            case _LOWER:
-                rgblight_sethsv(189,255,255);
-                break;
-            case _RAISE:
-                rgblight_sethsv(199,255,255);
-                break;
-            case _FUNCTION:
-                rgblight_sethsv(202,255,255);
-                break;
-            //case _HOLDA:
-            //    rgblight_sethsv(000,255,255);
-            //    break;
-            case _HOLDJ:
-                rgblight_sethsv(180,255,255);
-                break;
-            case _HOLDF:
-                rgblight_sethsv(26,255,255);
-                break;
-            case _BABBLE:
-                rgblight_sethsv(140,255,255);
-                break;
-            case _NUMPAD:
-                rgblight_sethsv(90,255,255);
-                break;
-            case _SYMBOLS:
-                rgblight_sethsv(156,255,255);
-                break;
-            case _CODE:
-                rgblight_sethsv(138,255,255);
-                break;
-            case _GAMING:
-                rgblight_sethsv(255,255,255);
-                break;
-            default:
-                rgblight_sethsv(000,255,255);
-        }
+        set_layer_led_user();
     }
-#endif
-}
-
-void matrix_init_user(void) {
-    rgblight_sethsv(122,255,255);
 }

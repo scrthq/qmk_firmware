@@ -38,8 +38,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_QWERTY] = LAYOUT_scrthq_kyria(
         FNTAB,    KC_Q,   KC_W,   KC_E,  KC_R,  KC_T,                                         KC_Y, KC_U,  KC_I,  KC_O,  KC_P,    KC_BSPC,
         HOLDMINS, KC_A,   HOLDS,  HOLDD, HOLDF, KC_G,                                         KC_H, HOLDJBAB, HOLDK, KC_L,  KC_SCLN, KC_QUOT,
-        KC_LSPO,  HOLDZ,  KC_X,   KC_C,  KC_V,  KC_B,   KC_NO,  FNESC,          HYPR_T(KC_ESC), MYMEH, KC_N, KC_M,  KC_COMM,KC_DOT,KC_SLSH,KC_RSPC,
-                    TG(_SYMBOLS), CTLGRV,  OUTRSPCLO, KC_LALT,  KC_LGUI,        HOLDRGUI, HOLDLEFT,  OUTRENTHI, HOLDRIGHT, TG(_SYMBOLS)
+    KC_LSPO,  HOLDZ,  KC_X,   KC_C,  KC_V,  KC_B,   KC_NO,  FNESC,              KC_MS_BTN1, KC_MS_BTN2, KC_N, KC_M,  KC_COMM,KC_DOT,KC_SLSH,KC_RSPC,
+                    TG(_SYMBOLS), CTLGRV,  OUTRSPCLO, KC_LALT,  KC_LGUI,        MYMEH, KC_LEFT,  OUTRENTHI, HOLDRIGHT, TG(_SYMBOLS)
     ),
 
     [_LOWER] = LAYOUT_scrthq_kyria(
@@ -60,14 +60,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         RESET,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                             KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,
         KC_CAPS, SCRT1,   SCRT2,   SCRT3,   SCRT4,   SCRT5,                                             SCRT6,   SCRT7,   SCRT8,   SCRT9,   SCRT10,  KC_F12,
         _______, _______, _______, _______, _______, _______, _______, _______,       _______, _______, SS_EMAIL,_______, _______, _______, _______, KC_F13,
-                                _______,  _______,  _______,  _______, _______,       _______, _______, _______, _______, TO(_QWERTY)
+                                _______,  RESET,     SS_EMAIL,DLRUNDER,SCRT13,        _______, SCRT14,  SCRT15,  SCRT16,  TO(_QWERTY)
     ),
 
     [_BABBLE] = LAYOUT_scrthq_kyria(
         _______, B_WIN,    B_DLW,  B_MAC, B_BRLD, B_ROTB,                                      B_REDO,   B_NLIST, B_BLIST,  B_ZOUT,  B_ZIN,   B_SCAP,
         _______, B_SELALL, B_SAVE, B_BDEV, B_FIND, B_CLIPHIST,                                 B_RPLACE, _______, KC_EQUAL, B_MSEL,  _______, _______,
-        _______,B_UNDO,    B_CUT,  B_COPY, B_PASTE, B_PSTPLN, B_GSOL, B_GEOL,       B_GSOL, B_GEOL, B_NTAB,  B_CTAB,_______, _______, _______, _______,
-                    _______, B_INDENT, B_DEDENT, HYPR(KC_LEFT), HYPR(KC_RGHT),      _______, HYPR(KC_LEFT), _______, HYPR(KC_RGHT), TO(_QWERTY)
+        _______, B_UNDO,   B_CUT,  B_COPY, B_PASTE, B_PSTPLN, B_GSOL, B_GEOL,       B_GSOL, B_GEOL, B_NTAB,  B_CTAB,_______, _______, _______, _______,
+                    _______, B_INDENT, B_DEDENT, HYPR(KC_LEFT), HYPR(KC_RGHT),      HYPR(KC_LEFT), _______, HYPR(KC_RGHT),_______,  TO(_QWERTY)
     ),
 
     [_HOLDF] = LAYOUT_scrthq_kyria(
@@ -88,7 +88,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         RGB_TOG,  _______, _______, _______, _______, _______,                                                _______, LSFT(KC_7),     LSFT(KC_8),     LSFT(KC_9), _______, _______,
         RGB_MOD,  _______, _______, _______, _______, TO(_GAMING),                                            _______, LSFT(KC_4),     LSFT(KC_5),     LSFT(KC_6), _______, KC_MINUS,
         RGB_RMOD, _______, _______, _______, _______, _______, _______, _______,            _______, _______, _______, LSFT(KC_1),     LSFT(KC_2),     LSFT(KC_3), _______, _______,
-                                TO(_QWERTY), _______, _______, B_GTOP, B_GEND,              _______, _______, LSFT(KC_0), LSFT(KC_0), TO(_QWERTY)
+                                TO(_QWERTY), RESET, _______, B_GTOP, B_GEND,              _______, _______, LSFT(KC_0), LSFT(KC_0), TO(_QWERTY)
     ),
 
     [_GAMING] = LAYOUT_scrthq_kyria(
@@ -120,7 +120,7 @@ static void render_status(void) {
             oled_write_P(PSTR("RAISE"), false);
             break;
         case _FUNCTION:
-            oled_write_P(PSTR("FN / RGB"), false);
+            oled_write_P(PSTR("FUNCTION"), false);
             break;
         //case _HOLDA:
         //    oled_write_P(PSTR("HOLD A"), false);
@@ -233,20 +233,6 @@ void encoder_update_user(uint8_t index, bool clockwise) {
             break;
         default: // everything else, do alt-tab
             if (index == 1) { /* Second encoder */
-                if (clockwise) {
-                    #ifdef MOUSEKEY_ENABLE
-                        tap_code(KC_MS_WH_DOWN);
-                    #else
-                        tap_code(KC_PGDN);
-                    #endif
-                } else {
-                    #ifdef MOUSEKEY_ENABLE
-                        tap_code(KC_MS_WH_UP);
-                    #else
-                        tap_code(KC_PGUP);
-                    #endif
-                }
-            } else if (index == 0) { /* First encoder */
                 if (!is_alt_tab_active) {
                     is_alt_tab_active = true;
                     #ifdef USE_BABBLEPASTE
@@ -267,6 +253,20 @@ void encoder_update_user(uint8_t index, bool clockwise) {
                     tap_code16(KC_TAB);
                 } else {
                     tap_code16(S(KC_TAB));
+                }
+            } else if (index == 0) { /* First encoder */
+                if (clockwise) {
+                    #ifdef MOUSEKEY_ENABLE
+                        tap_code(KC_MS_WH_DOWN);
+                    #else
+                        tap_code(KC_PGDN);
+                    #endif
+                } else {
+                    #ifdef MOUSEKEY_ENABLE
+                        tap_code(KC_MS_WH_UP);
+                    #else
+                        tap_code(KC_PGUP);
+                    #endif
                 }
             }
             break;

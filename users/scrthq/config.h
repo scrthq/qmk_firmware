@@ -30,23 +30,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //if no chord during tapping term, do the keystroke
 //#define RETRO_TAPPING
 
-#define USE_BABBLEPASTE
-
-// All options
-#define BABL_MOVE // Uncomment to add basic cursor movement
-#define BABL_OSKEYS // This adds Cut, paste, window movement and common OS shortcuts
-#define BABL_BROWSER // Browser shortcuts, with Chrome/Firefox as the default.
-// edit the appropriate OS config file to enable Safari, Edge, vimpirator &etc.
-#define BABL_APP // Application specific settings this has sub-options.
-//#define BABL_APP_CELLS // spreadsheets and tables
-#define BABL_APP_EDITOR // Fancy editor commands
-#define BABL_APP_WINDOWSPLITTING // splitting frames & windows
-#define BABL_BROWSER_CHROME // Chrome specific browser shortcuts like Dev Tools
-#define BABL_APP_VSCODE // Visual Studio Code shortcuts like select all occurrences
-
-//All OSes
-#define BABL_WINDOWS
-#define BABL_MAC
+#ifdef RGBLIGHT_ENABLE
+    #define RGBLIGHT_EFFECT_RAINBOW_SWIRL
+    // #define RGBLIGHT_EFFECT_KNIGHT
+    #define RGBLIGHT_EFFECT_STATIC_GRADIENT
+    //#define RGBLIGHT_ANIMATIONS
+    //#define RGBLIGHT_HUE_STEP 8
+    //#define RGBLIGHT_SAT_STEP 8
+#endif
 
 /* #ifdef RGBLIGHT_ENABLE
 #define BABL_LED_INDEX 0 // set to 0 to set all LEDs , or set to # of LED to be used as BABL updaters

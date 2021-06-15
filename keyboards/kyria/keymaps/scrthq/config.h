@@ -54,13 +54,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     //#define RGBLIGHT_EFFECT_RAINBOW_SWIRL
     //#define RGBLIGHT_EFFECT_STATIC_GRADIENT
     //#define RGBLIGHT_SLEEP
-
-    #undef RGBLED_NUM
-    //#define RGBLIGHT_EFFECT_STATIC_GRADIENT
-    //#define RGBLIGHT_EFFECT_RAINBOW_SWIRL
-    #define RGBLED_NUM 12
-    #define RGBLIGHT_HUE_STEP 8
-    #define RGBLIGHT_SAT_STEP 8
+    #ifdef RGBLIGHT_NUM
+        #undef RGBLIGHT_NUM
+        #define RGBLIGHT_NUM 20
+    #endif
 #endif
 
 #ifdef ENCODER_ENABLE

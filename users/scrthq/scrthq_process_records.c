@@ -16,85 +16,72 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include QMK_KEYBOARD_H
+#include "scrthq_os_keys.h"
 #include "scrthq.h"
 
 #include "action.h"
 #include "version.h"
 #include "eeprom.h"
 
-#ifdef USE_BABBLEPASTE
-extern uint8_t babble_mode;
-#endif
+extern userspace_config_t runtime_userspace_config;
+extern userspace_config_t stored_userspace_config;
 
 __attribute__((weak)) bool process_record_secrets(uint16_t keycode, keyrecord_t *record) { return true; }
 
 __attribute__((weak)) bool process_record_keymap(uint16_t keycode, keyrecord_t *record) { return true; }
 
+__attribute__((weak)) bool send_os_key(uint16_t keycode, keyrecord_t *record) { return true; }
+
+__attribute__((weak)) void set_os(uint8_t os);
+__attribute__((weak)) void store_userspace_config(void);
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    bool is_pressed = record->event.pressed;
+    bool    pressed = record->event.pressed;
 
 #ifdef CONSOLE_ENABLE
-    uprintf("PU: kc: [%u], col: [%u], row: [%u], pressed: [%u]\n", keycode, record->event.key.col, record->event.key.row, is_pressed);
+    uprintf("PU: kc: [%u], col: [%u], row: [%u], pressed: [%u]\n", keycode, record->event.key.col, record->event.key.row, pressed);
 #endif
-#ifdef USE_BABBLEPASTE
-    if (keycode > BABBLE_START && keycode < BABBLE_END_RANGE) {
-        if (is_pressed) {
-            /* if (keycode >= BABL_DO_MAC && keycode <= BABL_DO_VI) {
-                userspace_config.raw = keycode;
-                eeconfig_update_user(userspace_config.raw);
-            } */
-            babblePaste(keycode);
+    if (keycode > _OSKEY_START && keycode < _OSKEY_END) {
+        if (pressed) {
+            send_os_key(keycode, record);
         } else {
             return true;
         }
     }
-#endif
     switch (keycode) {
+        case EPRM:  // Resets EEPROM
+            if (pressed) {
+                eeconfig_init();
+                default_layer_set(1UL << eeconfig_read_default_layer());
+                layer_state_set(layer_state);
+                set_os(_OS_MACOS);
+                store_userspace_config();
+            }
+            return false;
+            break;
         case QWERTY:
-            if (record->event.pressed) {
+            if (pressed) {
                 set_single_persistent_default_layer(_QWERTY);
             }
             return false;
             break;
-        case VRSN:
-            if (is_pressed) {
-                send_string_with_delay_P(PSTR("# " QMK_KEYBOARD ":" QMK_KEYMAP " @ " QMK_BUILDDATE "\n"), MACRO_DELAY);
-            }
-            return false;
 #ifdef UNICODE_ENABLE
         case SHRUG:
             bool is_shifted = get_mods() & MOD_MASK_SHIFT;
-            if (is_pressed) {
+            if (pressed) {
                 send_unicode_string((is_shifted ? "¯\\_(ツ)_/¯" : "ಠ_ಠ"));
             }
             return false;
             break;
 #endif
-#ifdef USE_BABBLEPASTE
-        case BABL_CUR_MODE:
-            if (is_pressed) {
-                switch (babble_mode) {
-                    case BABL_WINDOWS_MODE:
-                        SEND_STRING("Windows");
-                        break;
-                    case BABL_MAC_MODE:
-                        SEND_STRING("macOS");
-                        break;
-                    default:
-                        SEND_STRING("Unknown");
-                }
-            }
-            return false;
-            break;
-#endif
         case MOFO:
-            if (is_pressed) {
+            if (pressed) {
                 SEND_STRING("Mofo from QMK!");
             }
             return false;
             break;
         case LOWER:
-            if (is_pressed) {
+            if (pressed) {
                 layer_on(_LOWER);
                 update_tri_layer(_LOWER, _RAISE, _FUNCTION);
             } else {
@@ -104,7 +91,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
             break;
         case RAISE:
-            if (is_pressed) {
+            if (pressed) {
                 layer_on(_RAISE);
                 update_tri_layer(_LOWER, _RAISE, _FUNCTION);
             } else {

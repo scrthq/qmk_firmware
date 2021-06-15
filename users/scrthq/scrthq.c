@@ -15,118 +15,146 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include QMK_KEYBOARD_H
 #include "scrthq.h"
+#include "scrthq_os_keys.h"
 #include "quantum.h"
 
 #ifdef RGBLIGHT_ENABLE
-#include "rgblight.h"
+#    include "rgblight.h"
 #endif
 #ifdef RAW_ENABLE
-#include "raw_hid.h"
+#    include "raw_hid.h"
 #endif
 
 #include "scrthq_layouts.h"
 #include "scrthq_key_definitions.h"
 
-#ifdef USE_BABBLEPASTE
-extern uint8_t babble_mode;
+// ---------------------------------------------------------
+
+userspace_config_t runtime_userspace_config;
+userspace_config_t stored_userspace_config;
+
+void store_userspace_config(void) {
+    stored_userspace_config.raw = runtime_userspace_config.raw;
+    eeconfig_update_user(stored_userspace_config.raw);
+}
+
+void set_os(uint8_t os) {
+    runtime_userspace_config.os_target = os;
+
+#if defined(UNICODE_ENABLE) || defined(UNICODEMAP_ENABLE) || defined(UCIS_ENABLE)
+    switch (os) {
+        case _OS_MACOS:
+            set_unicode_input_mode(UC_OSX);
+            break;
+        case _OS_LINUX:
+            set_unicode_input_mode(UC_LNX);
+            break;
+        case _OS_WINDOWS:
+            set_unicode_input_mode(UC_WIN);
+            break;
+    }
 #endif
+}
+
+uint8_t get_os(void) {
+    return runtime_userspace_config.os_target;
+}
+
+void matrix_init_user(void) {
+    stored_userspace_config.raw  = eeconfig_read_user();
+    runtime_userspace_config.raw = stored_userspace_config.raw;
+
+    set_os(runtime_userspace_config.os_target);
+}
 
 #ifdef TAP_DANCE_ENABLE
-    qk_tap_dance_action_t tap_dance_actions[] = {
-        [SPENT] = ACTION_TAP_DANCE_DOUBLE(KC_SPC, KC_ENT),
-        [SPACELO] = ACTION_TAP_DANCE_DOUBLE(KC_SPC, LOWER),
-        [SPACEHI] = ACTION_TAP_DANCE_DOUBLE(KC_SPC, RAISE),
-        [BBLGUI] = ACTION_TAP_DANCE_DOUBLE(KC_LGUI, LT(_BABBLE,KC_LGUI)),
-    };
+qk_tap_dance_action_t tap_dance_actions[] = {
+    [SPENT]   = ACTION_TAP_DANCE_DOUBLE(KC_SPC, KC_ENT),
+    [SPACELO] = ACTION_TAP_DANCE_DOUBLE(KC_SPC, LOWER),
+    [SPACEHI] = ACTION_TAP_DANCE_DOUBLE(KC_SPC, RAISE),
+    [BBLGUI]  = ACTION_TAP_DANCE_DOUBLE(KC_LGUI, LT(_OSKEYS, KC_LGUI)),
+};
 #endif
 
 void set_layer_led_user(void) {
-    #ifdef RGBLIGHT_ENABLE
-        switch (get_highest_layer(layer_state)) {
-            case _QWERTY:
-                #ifdef USE_BABBLEPASTE
-                    switch (babble_mode) {
-                        case BABL_WINDOWS_MODE:
-                            rgblight_sethsv(30,255,255);
-                            break;
-                        case BABL_MAC_MODE:
-                            rgblight_sethsv(122,255,255);
-                            break;
-                        default:
-                            rgblight_sethsv(250,255,255);
-                            break;
-                    }
-                #else
-                    rgblight_sethsv(122,255,255);
-                #endif
-                break;
-            case _LOWER:
-                rgblight_sethsv(189,255,255);
-                break;
-            case _RAISE:
-                rgblight_sethsv(199,255,255);
-                break;
-            case _FUNCTION:
-                rgblight_sethsv(202,255,255);
-                break;
-            //case _HOLDA:
-            //    rgblight_sethsv(000,255,255);
-            //    break;
-            case _HOLDJ:
-                rgblight_sethsv(180,255,255);
-                break;
-            case _HOLDF:
-                rgblight_sethsv(26,255,255);
-                break;
-            case _BABBLE:
-                rgblight_sethsv(140,255,255);
-                break;
-            case _NUMPAD:
-                rgblight_sethsv(90,255,255);
-                break;
-            case _SYMBOLS:
-                rgblight_sethsv(156,255,255);
-                break;
-            case _CODE:
-                rgblight_sethsv(138,255,255);
-                break;
-            case _GAMING:
-                rgblight_sethsv(255,255,255);
-                break;
-            default:
-                rgblight_sethsv(000,255,255);
-                break;
-        }
-    #endif
+#ifdef RGBLIGHT_ENABLE
+    uint8_t os_target  = get_os();
+    switch (get_highest_layer(layer_state)) {
+        case _QWERTY:
+            switch (os_target) {
+                case _OS_MACOS:
+                    rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_SWIRL + 1);
+                    // rgblight_sethsv(30, 255, 255);
+                    break;
+                default:
+                    rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_SWIRL + 5);
+                    // rgblight_sethsv(122, 255, 255);
+                    break;
+            }
+            break;
+        case _OSKEYS:
+            rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_GRADIENT + 1);
+            // rgblight_sethsv(140, 255, 255);
+            break;
+        case _LOWER:
+            rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_GRADIENT + 2);
+            // rgblight_sethsv(189, 255, 255);
+            break;
+        case _RAISE:
+            rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_GRADIENT + 3);
+            // rgblight_sethsv(199, 255, 255);
+            break;
+        case _FUNCTION:
+            rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_GRADIENT + 4);
+            // rgblight_sethsv(202, 255, 255);
+            break;
+        case _NUMPAD:
+            rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_GRADIENT + 5);
+            // rgblight_sethsv(202, 255, 255);
+            break;
+        case _SYMBOLS:
+            rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_GRADIENT + 6);
+            // rgblight_sethsv(202, 255, 255);
+            break;
+        case _GAMING:
+            rgblight_mode_noeeprom(1); // RGBLIGHT_MODE_STATIC_LIGHT
+            // rgblight_mode_noeeprom(RGBLIGHT_MODE_KNIGHT + 2);
+            // rgblight_sethsv(255, 255, 255);
+            break;
+        default:
+            rgblight_mode_noeeprom(RGBLIGHT_MODE_STATIC_GRADIENT + 7);
+            // rgblight_sethsv(255, 255, 255);
+            break;
+    }
+#endif
 }
 
 void keyboard_post_init_user(void) {
+    rgblight_set_speed(255);
     set_layer_led_user();
 }
 
 #ifdef RAW_ENABLE
 void raw_hid_receive(uint8_t *data, uint8_t length) {
+    uint8_t os_target  = get_os();
     uint8_t *command_data = &(data[1]);
-    #ifdef CONSOLE_ENABLE
-        uint8_t *command_id   = &(data[0]);
-        uprintf("HID COM ID: [%u], DATA: [%u]\n", *command_id, *command_data);
-    #endif
+#    ifdef CONSOLE_ENABLE
+    uint8_t *command_id = &(data[0]);
+    uprintf("HID COM ID: [%u], DATA: [%u]\n", *command_id, *command_data);
+#    endif
     switch (*command_data) {
-        #ifdef USE_BABBLEPASTE
-        #ifdef BABL_MAC
-        case set_babblepaste_mac: {
-            if (babble_mode != BABL_MAC_MODE) {
-                set_babble_mode(BABL_MAC_MODE);
+        case set_os_mac: {
+            if (os_target != _OS_MACOS) {
+                set_os(_OS_MACOS);
                 set_layer_led_user();
             }
             break;
         }
-        #endif
-        #ifdef BABL_WINDOWS
-        case set_babblepaste_win: {
-            if (babble_mode != BABL_WINDOWS_MODE) {
-                set_babble_mode(BABL_WINDOWS_MODE);
+        case set_os_win: {
+            if (os_target != _OS_WINDOWS) {
+                set_os(_OS_WINDOWS);
                 set_layer_led_user();
             }
             break;
@@ -134,8 +162,6 @@ void raw_hid_receive(uint8_t *data, uint8_t length) {
         default: {
             break;
         }
-        #endif
-        #endif
     }
     raw_hid_send(data, length);
 }

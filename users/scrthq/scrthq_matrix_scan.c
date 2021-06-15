@@ -16,6 +16,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "scrthq.h"
+#include "scrthq_os_keys.h"
 #include "scrthq_key_definitions.h"
 
 bool is_alt_tab_active = false;
@@ -27,28 +28,22 @@ uint16_t tab_time_limit = 1200;
 bool has_layer_changed = false;
 static uint8_t current_layer;
 
-#ifdef USE_BABBLEPASTE
-extern uint8_t babble_mode;
-#endif
-
+__attribute__((weak)) uint8_t get_os(void) {return 1;}
 __attribute__((weak)) void set_layer_led_user(void) { return; }
 
 void matrix_scan_user(void) {
     uint8_t layer = biton32(layer_state);
     if (is_alt_tab_active) {
         if (timer_elapsed(alt_tab_timer) > tab_time_limit) {
-            #ifdef USE_BABBLEPASTE
-            switch (babble_mode) {
-                case BABL_MAC_MODE:
+            uint8_t os_target  = get_os();
+            switch (os_target) {
+                case 0:
                     unregister_code(KC_LGUI);
                     break;
                 default:
                     unregister_code(KC_LALT);
                     break;
             }
-            #else
-            unregister_code(KC_LALT);
-            #endif
             is_alt_tab_active = false;
         }
     }

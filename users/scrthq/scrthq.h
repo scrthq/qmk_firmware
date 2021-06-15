@@ -17,10 +17,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include "babblePaste.h"
+#include "scrthq_os_keys.h"
 
 #include QMK_KEYBOARD_H
 #include "quantum.h"
+#include "version.h"
+#include "eeprom.h"
 
 // clang-format off
 // Custom keycodes
@@ -34,6 +36,7 @@ enum scrthq_userspace_custom_keycodes {
     QWERTY,
     BACKLIT,
     BABL_CUR_MODE,
+    EPRM,
     KC_SECRET_1,
     KC_SECRET_2,
     KC_SECRET_3,
@@ -63,7 +66,7 @@ enum scrthq_userspace_layers {
     _HOLDA,
     _HOLDF,
     _HOLDJ,
-    _BABBLE,
+    _OSKEYS,
     _NUMPAD,
     _SYMBOLS,
     _EMPTY,
@@ -80,15 +83,13 @@ enum scrthq_tap_dance_declarations {
 };
 
 enum scrthq_hid_commands {
-    set_babblepaste_mac                 = 0x01,
-    set_babblepaste_win                 = 0x02,
+    set_os_mac = 0x01,
+    set_os_win = 0x02,
 };
 
-/* typedef union {
-    uint32_t   raw;
+typedef union {
+    uint32_t raw;
     struct {
-        bool   babblepaste_mode : 1;
+        uint8_t os_target : 2;
     };
 } userspace_config_t;
-
-userspace_config_t userspace_config; */

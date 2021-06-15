@@ -24,8 +24,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 #ifdef RGBLIGHT_ENABLE
-    //#define RGBLIGHT_EFFECT_STATIC_GRADIENT
-
     #undef RGBLED_NUM
     #define RGBLIGHT_EFFECT_STATIC_GRADIENT
     #define RGBLIGHT_EFFECT_RAINBOW_SWIRL

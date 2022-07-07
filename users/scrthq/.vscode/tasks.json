@@ -1,0 +1,179 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Compile QMK Firmware",
+            "type": "shell",
+            "command": "start=$(date +'%F %T') && export QMK_HOME=\"/e/Git/qmk_firmware\" && cd ${QMK_HOME} && qmk compile -kb ${input:Keyboard} -km ${input:Keymap} && echo \"\" && echo \"Start : $start\" && echo \"End   : $(date +'%F %T')\"",
+            "problemMatcher": [],
+            "runOptions": {
+                "instanceLimit": 2
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "new",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "QMK",
+            },
+            "options": {
+                "shell": {
+                    "args": [
+                        "--login",
+                        "-c"
+                    ],
+                    "executable": "C:\\msys64\\usr\\bin\\bash.exe"
+                },
+                "env": {
+                    "MSYSTEM": "MINGW64",
+                    "CHERE_INVOKING": "1"
+                }
+            }
+        },
+        {
+            "label": "(Mun) Compile QMK Firmware",
+            "type": "shell",
+            "command": "start=$(date +'%F %T') && export QMK_HOME=\"/e/Git/qmk_firmware_rgbkb\" && cd ${QMK_HOME} && qmk compile -kb rgbkb/mun -km ${input:Keymap} && echo \"\" && echo \"Start : $start\" && echo \"End   : $(date +'%F %T')\"",
+            "problemMatcher": [],
+            "runOptions": {
+                "instanceLimit": 2
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "new",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "QMK",
+            },
+            "options": {
+                "shell": {
+                    "args": [
+                        "--login",
+                        "-c"
+                    ],
+                    "executable": "C:\\msys64\\usr\\bin\\bash.exe"
+                },
+                "env": {
+                    "MSYSTEM": "MINGW64",
+                    "CHERE_INVOKING": "1"
+                }
+            }
+        },
+        {
+            "label": "Flash QMK Firmware",
+            "type": "shell",
+            "command": "start=$(date +'%F %T') && export QMK_HOME=\"/e/Git/qmk_firmware\" && cd ${QMK_HOME} && qmk flash -kb ${input:Keyboard} -km ${input:Keymap} && echo \"\" && echo \"Start : $start\" && echo \"End   : $(date +'%F %T')\"",
+            "problemMatcher": [],
+            "runOptions": {
+                "instanceLimit": 2
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "new",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "QMK",
+            },
+            "options": {
+                "shell": {
+                    "args": [
+                        "--login",
+                        "-c"
+                    ],
+                    "executable": "C:\\msys64\\usr\\bin\\bash.exe"
+                },
+                "env": {
+                    "MSYSTEM": "MINGW64",
+                    "CHERE_INVOKING": "1"
+                }
+            }
+        },
+        {
+            "label": "(Mun) Flash QMK Firmware",
+            "type": "shell",
+            "command": "start=$(date +'%F %T') && export QMK_HOME=\"/e/Git/qmk_firmware_rgbkb\" && cd ${QMK_HOME} && qmk flash -kb rgbkb/mun -km ${input:Keymap} && echo \"\" && echo \"Start : $start\" && echo \"End   : $(date +'%F %T')\"",
+            "problemMatcher": [],
+            "runOptions": {
+                "instanceLimit": 2
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "new",
+                "showReuseMessage": true,
+                "clear": false,
+                "group": "QMK",
+            },
+            "options": {
+                "shell": {
+                    "args": [
+                        "--login",
+                        "-c"
+                    ],
+                    "executable": "C:\\msys64\\usr\\bin\\bash.exe"
+                },
+                "env": {
+                    "MSYSTEM": "MINGW64",
+                    "CHERE_INVOKING": "1"
+                }
+            }
+        }
+    ],
+    "inputs": [
+        {
+            "id": "QMK_HOME",
+            "description": "QMK_HOME:",
+            "default": "/e/Git/qmk_firmware",
+            "type": "pickString",
+            "options": [
+                "/e/Git/qmk_firmware",
+                "/e/Git/qmk_firmware_rgbkb",
+            ]
+        },
+        {
+            "id": "Action",
+            "description": "Action:",
+            "default": "compile",
+            "type": "pickString",
+            "options": [
+                "compile",
+                "flash",
+            ]
+        },
+        {
+            "id": "Keyboard",
+            "description": "Keyboard:",
+            "default": "foostan/cornelius",
+            "type": "pickString",
+            "options": [
+                "foostan/cornelius",
+                "crkbd/rev1",
+                "rgbkb/mun",
+                "kyria",
+                "eyeohdesigns/babyv",
+                "mechlovin/adelais",
+                "ploopyco/trackball_nano/rev1_001",
+            ]
+        },
+        {
+            "id": "Keymap",
+            "description": "Keymap:",
+            "default": "scrthq",
+            "type": "pickString",
+            "options": [
+                "scrthq",
+                "via",
+                "default",
+                "scrthq-highdpi",
+                "scrthq-scrollball",
+            ]
+        }
+    ]
+}
